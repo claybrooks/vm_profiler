@@ -72,8 +72,8 @@ def RunTests(args):
 
     # high level test group functions
     testClasses = {
-        _cpu: cpuCommandBuilder#, 
-        #_mem: memoryCommandBuilder,
+        _cpu: cpuCommandBuilder, 
+        _mem: memoryCommandBuilder,
     }
 
     for name, command in testClasses.items():
@@ -83,11 +83,19 @@ def RunTests(args):
 #
 #***********************************************************************************************************************
 def validateArgs(args):
+    valid = True
+
     if args.numParallel == 0:
         args.numParallel = ng.getHogs()
+        if args.numParallel == -1:
+            print ("Couldn't get Hogs")
+            valid = False
 
     if os.path.isdir(args.outputDir) == False:
         h.makeDirectory(args.outputDir)
+
+    if valid == False:
+        print("quitting")
 
 #***********************************************************************************************************************
 #

@@ -48,12 +48,18 @@ def outputAllStressorToFile(file):
 #***********************************************************************************************************************
 def getHogs():
 
+    # send command, but tell stress-ng we just want output, not an actual run
     output = runAndGetOutput('stress-ng --cpu 0 --dry-run')[1]
 
+    # we are interested in the hogs
     to_find = 'hogs: '
 
+    # search through all output
     for line in output:
+        # we found the line
         if to_find in line:
+            # get the number between hogs: and ' '
             return int(h.getStringBetween(line, to_find, ' '))
 
+    # we couldn't find hogs
     return -1
