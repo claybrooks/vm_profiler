@@ -8,12 +8,20 @@
             "name": "RunTests.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/RunTests.py",
+            "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "~/VirtualMachineTestOutput",
+                "-o", "${workspaceFolder}/Output/$USER/",
                 "-c",
-                "-t", "2"
+                "-t", "10"
             ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "ListStressors.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": ["-l", "-o", "${workspaceFolder}/Output/$USER/"],
             "console": "integratedTerminal"
         }
     ]
