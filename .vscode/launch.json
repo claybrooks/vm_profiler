@@ -74,7 +74,8 @@
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
-                "-a"
+                "-a",
+                "-c"
             ],
             "console": "integratedTerminal"
         },
@@ -86,7 +87,8 @@
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "--class", "cpu",
-                "-a"
+                "-a",
+                "-c"
             ],
             "console": "integratedTerminal"
         },
@@ -98,7 +100,8 @@
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "--class", "memory",
-                "-a"
+                "-a",
+                "-c"
             ],
             "console": "integratedTerminal"
         },
@@ -110,7 +113,8 @@
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "--class", "scheduler",
-                "-a"
+                "-a",
+                "-c"
             ],
             "console": "integratedTerminal"
         },

@@ -12,35 +12,35 @@ import os
 #***********************************************************************************************************************
 def genBargraph(outputDir, dataSet, listOfStats):
     
-    # ensure our directory is good
-    if os.path.isdir(outputDir) == False:
-        h.makeDirectory(outputDir)
-
     # iterate through each test set
     for testSet, results in dataSet.items():
+        
+        _dir = os.path.join(outputDir, testSet)
+
+        # ensure our directory is good
+        if os.path.isdir(_dir) == False:
+            h.makeDirectory(_dir)
 
         for x,y in listOfStats:
-            outFile = os.path.join(outputDir, testSet) + f'_{x}_{y}_bar.png'
+            outFile = os.path.join(_dir, f'{x}_{y}_bar.png')
 
             plt.title(f'{testSet}: {y}')
             plt.ylabel(y)
             plt.xlabel(x)
-            plotData = {}
+
+            num_results = len(results.items())
+            index   = list(range(0, num_results))
+            x_data  = [0] * num_results
+            y_data  = [0] * num_results
 
             # temporarily display bogo ops per group of CPU
+            iter = 0
             for _, data in results.items():
-                plotData[data[x]] = data[y]
+                x_data[iter] = int(float(data[x].replace(',','')))
+                y_data[iter] = int(float(data[y].replace(',','')))
+                iter += 1
 
-            index = list(range(0, len(plotData)))
-            x_data = list(range(1, len(plotData) + 1))
-            y_data = [0] *len(x_data)
-
-            for x in x_data:
-                y_data[x-1] = float(plotData[str(x)])
-
-            # normalize to 1
-            high = max(y_data)
-            y_data = [x/high for x in y_data]
+            x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
 
             low = min(y_data)
             high = max(y_data)

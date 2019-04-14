@@ -65,9 +65,30 @@ classGraphGen = {
 }
 
 classGraphDataSets = {
-    _cpu: [('Parallelism', 'Throughput')],
-    _mem: [('Parallelism', 'Throughput')],
-    _sch: [('Parallelism', 'Throughput')],
+    _cpu: [
+        ('Parallelism',     'Throughput'),
+        ('Parallelism',     'Page Faults Total'),
+        ('Parallelism',     'Context Switches'),
+        ('Parallelism',     'CPU Migrations'),
+        ('Context Switches','Throughput'),
+        ('CPU Migrations',  'Throughput'),
+    ],
+    _mem: [
+        ('Parallelism',     'Throughput'),
+        ('Parallelism',     'Page Faults Total'),
+        ('Parallelism',     'Context Switches'),
+        ('Parallelism',     'CPU Migrations'),
+        ('Context Switches','Throughput'),
+        ('CPU Migrations',  'Throughput'),
+    ],
+    _sch: [
+        ('Parallelism',     'Throughput'),
+        ('Parallelism',     'Page Faults Total'),
+        ('Parallelism',     'Context Switches'),
+        ('Parallelism',     'CPU Migrations'),
+        ('Context Switches','Throughput'),
+        ('CPU Migrations',  'Throughput'),
+    ],
 }
 
 testResultsDir = ''
@@ -113,7 +134,7 @@ def runTests(args):
     
     clearTestFolders(args, testResultsDir)
 
-    print (f'Running with parallelism of {args.numParallel}')
+    print(f'Running with parallelism of {args.numParallel}')
 
     for name in testClasses:
         runTestClass(args, name, classBuilders[name], stressorSets[name])
@@ -122,6 +143,8 @@ def runTests(args):
 #
 #***********************************************************************************************************************
 def analyzeData(args):
+
+    print("Analyzing Data")
 
     parsedData = {}
 
@@ -164,6 +187,8 @@ def analyzeData(args):
 #***********************************************************************************************************************
 def generateGraphs(args, parsedData):
     
+    print("Generating Graphs")
+
     clearTestFolders(args, analyzedDataDir)
 
     # iterate over each class
