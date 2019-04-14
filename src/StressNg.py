@@ -49,14 +49,16 @@ def outputAllStressorToFile(file):
 #***********************************************************************************************************************
 def parseOutput(fullPathToFile):
     # some helper strings for searching
-    hogs        = 'hogs: '
-    time        = 'completed in '
-    stressor    = 'stressor'
-    cpu         = 'cpu'
-    cpu_colon   = 'cpu: '
+    hogs                = 'hogs: '
+    time                = 'completed in '
+    stressor            = 'stressor'
+    emulationFaults = 'Emulation Faults'
 
     # some helper bools to flag what section we are in
     onStressor = False
+    stressorDone = False
+    bogoLineStarts = 2
+    onDetailed = False
 
     # holder for output
     data = {}
@@ -67,38 +69,68 @@ def parseOutput(fullPathToFile):
         for line in f:
             # wait for proper stressor line
             if onStressor == True:
+                bogoLineStarts -= 1
+
                 # we are on the right line
-                if cpu in line:
+                if bogoLineStarts == 0:
                     # split up the data
-                    list_of_data = line.split(cpu)[1]
+                    list_of_data = line.split(']')[1]
                     list_of_data = re.sub(' +', ' ', list_of_data).lstrip(' ').rstrip(' ').split(' ')
 
                     # fill in data
-                    data['bogo'] = list_of_data[0]
-                    data['real_time'] = list_of_data[1]
-                    data['usr_time'] = list_of_data[2]
-                    data['sys_time'] = list_of_data[3]
-                    data['bogo_ops_s'] = list_of_data[4]
-                    data['bogo_ops_s_total'] = list_of_data[5]
+                    index = 1
+                    data['Bogo']            = list_of_data[index]
+                    index += 1
+                    data['Real Time (s)']   = list_of_data[index]
+                    index += 1
+                    data['User Time (s)']   = list_of_data[index]
+                    index += 1
+                    data['Sys Time (s)']    = list_of_data[index]
+                    index += 1
+                    data['Throughput']      = list_of_data[index]
+                    index += 1
+                    #data['bogo_ops_s_total'] = list_of_data[5].rstrip('\n')
 
-                    onStressor = False
+                    onStressor  = False
+                    stressorDone = True
 
                 # nothing interesting yet
                 else:
                     continue
-                    
-            # count hogs
-            if hogs in line:
-                data['hogs'] = h.getStringBetween(line, hogs, ' ')
-            # count time
-            elif time in line:
-                data['time'] = h.getStringBetween(line, time, 's')
-            elif stressor in line:
-                onStressor = True
+            elif onDetailed == True:
+                # This is the end of the section
+                if emulationFaults in line:
+                    onDetailed = False      
+
+                line = line.split(']')[1]
+                line = re.sub(' +', ' ', line).lstrip(' ').rstrip(' ').split(' ')
+
+                num = line[0]
+                rateStart = 1
+                for i in range(1, len(line)):
+                    if line[i][0].isdigit():
+                        rateStart = i
+                        break
                 
+                name = ' '.join(line[1:rateStart])
+                rate = ''.join(line[rateStart:-1])
 
+                data[name] = num
+                data[name+" Rate"] = rate
+            else:  
+                # count hogs
+                if hogs in line:
+                    data['Parallelism'] = h.getStringBetween(line, hogs, ' ')
+                # count time
+                elif time in line:
+                    data['time'] = h.getStringBetween(line, time, 's')
+                elif stressor in line:
+                    onStressor = True
+                elif onStressor == False and stressorDone == True:
+                    onDetailed = True
+                
+    return data
 
-        # start looking for data
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************

@@ -27,12 +27,16 @@ def getStringBetween(string, sub1, sub2):
 #
 #***********************************************************************************************************************
 def makeDirectory(directory):
-    pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
+    if os.path.isdir(directory) == False:
+        pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
 def cleanFolder(fullPathToDir):
+    if os.path.isdir(fullPathToDir) == False:
+        return
+
     for file in os.listdir(fullPathToDir):
         filePath = os.path.join(fullPathToDir, file)
 

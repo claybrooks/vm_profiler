@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "RunTests.py",
+            "name": "RunAllTests.py",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
@@ -13,7 +13,41 @@
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "-c",
                 "-r",
-                "-t", "10"
+                "-p", "8",
+                "-t", "3",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "RunCPUTests.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "cpu",
+                "-c",
+                "-r",
+                "-p", "8",
+                "-t", "3",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "RunMemoryTests.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "memory",
+                "-c",
+                "-r",
+                "-p", "8",
+                "-t", "3",
+                "-a"
             ],
             "console": "integratedTerminal"
         },
@@ -24,6 +58,30 @@
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "AnalyzeCPUResults.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "cpu",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "AnalyzeMemoryResults.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "memory",
                 "-a"
             ],
             "console": "integratedTerminal"

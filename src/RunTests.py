@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 # internal
+import GraphGen as graph
 import Helper as h
 import TestGroups as t
 import StressNg as ng
@@ -11,7 +12,28 @@ import os
 import sys
 
 _cpu = 'cpu'
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def cpuCommandBuilder(p, t, stressor):
+    return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times'
+
 _mem = 'memory'
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def memoryCommandBuilder(p, t, stressor):
+    return f'stress-ng --{stressor} {p} -t {t}s --metrics-brief --perf --times'
+
+testClasses = [
+    _cpu, 
+    _mem
+]
+
+classBuilders = {
+    _cpu: cpuCommandBuilder, 
+    _mem: memoryCommandBuilder,
+}
 
 stressorSets = {
     _cpu: [
@@ -26,28 +48,31 @@ stressorSets = {
     ]
 }
 
-#***********************************************************************************************************************
-#
-#***********************************************************************************************************************
-def cpuCommandBuilder(p, t, stressor):
-    return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times'
+classGraphGen = {
+    _cpu: graph.genBargraph,
+    _mem: graph.genBargraph,
+}
 
-#***********************************************************************************************************************
-#
-#***********************************************************************************************************************
-def memoryCommandBuilder(p, t, stressor):
-    return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times --dry-run'
+classGraphDataSets = {
+    _cpu: [('Parallelism', 'Throughput')],
+    _mem: [('Parallelism', 'Throughput')],
+}
+
+testResultsDir = ''
+analyzedDataDir = ''
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
 def runTestClass(args, name, commandBuilder, stressorSet):
+    global testResultsDir
+
     print (f'Starting {name} Group')
 
     p = args.numParallel
     t = args.timeAllotted
 
-    testGroupDir = args.outputDir + f'/{name}'
+    testGroupDir = testResultsDir + f'/{name}'
 
     for stressor in stressorSet:
         print (f'\tStarting {stressor}')
@@ -61,62 +86,130 @@ def runTestClass(args, name, commandBuilder, stressorSet):
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def runTests(args):
-
+def clearTestFolders(args, fullPathToFolder):
     # clear the output first
-    if os.path.isdir(args.outputDir):
+    if os.path.isdir(fullPathToFolder):
+        # we want to clean our output folder
         if args.clean == True:
-            h.cleanFolder(args.outputDir)
-    else:
-        os.mkdir(args.outputDir)
+            # only clean classes we are running
+            for _class in testClasses:
+                h.cleanFolder(os.path.join(fullPathToFolder, _class))
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def runTests(args):
+    
+    clearTestFolders(args, testResultsDir)
 
-    # high level test group functions
-    testClasses = {
-        _cpu: cpuCommandBuilder, 
-        _mem: memoryCommandBuilder,
-    }
-
-    for name, command in testClasses.items():
-        runTestClass(args, name, command, stressorSets[name])
+    for name in testClasses:
+        runTestClass(args, name, classBuilders[name], stressorSets[name])
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
 def analyzeData(args):
 
+    parsedData = {}
+
     # each directory here is a test class, ignore files
-    for outputDir, testClasses, _ in os.walk(args.outputDir):
+    for topLevel, folders, _ in os.walk(testResultsDir):
+
         # iterate through each test class
-        for testClass in testClasses:
+        for testClass in folders:
+
+            # we don't care about this folder
+            if testClass not in testClasses:
+                continue
+
+            parsedData[testClass] = {}
+            classData = parsedData[testClass]
+
             # walk through each folder
-            for _, testSets, _ in os.walk(os.path.join(outputDir, testClass)):
+            for _dir, testSets, _file in os.walk(os.path.join(topLevel, testClass)):
+
                 # iterate through each test set
                 for testSet in testSets:
+                    classData[testSet] = {}
+                    testSetData = classData[testSet]
+
                     # walk through each folder
-                    for _, _, results in os.walk(os.path.join(outputDir, testClass, testSet)):
+                    for _, _, results in os.walk(os.path.join(topLevel, testClass, testSet)):
                         # go through each result
                         for result in results:
-                            # parse the data
-                            parsedData = ng.parseOutput(os.path.join(outputDir, testClass, testSet, result))
+                            testSetData[result] = ng.parseOutput(os.path.join(topLevel, testClass, testSet, result))
 
+                # break after iterating through all testSets
+                break
+        # break after iterating through all testClasses
+        break
+
+    generateGraphs(args, parsedData)
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def generateGraphs(args, parsedData):
+    
+    clearTestFolders(args, analyzedDataDir)
+
+    # iterate over each class
+    for _class in testClasses:
+        # graph each data set
+        classGraphGen[_class](os.path.join(analyzedDataDir, _class), parsedData[_class], classGraphDataSets[_class])
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
 def validateArgs(args):
+    # flag as the global version of this var
+    global testClasses
+    global testResultsDir
+    global analyzedDataDir
+
+    # track if our arguments are valid
     valid = True
 
+    # check parallelsism
     if args.numParallel == 0:
         args.numParallel = ng.getHogs()
         if args.numParallel == -1:
             print ("Couldn't get Hogs")
             valid = False
 
-    if os.path.isdir(args.outputDir) == False:
-        h.makeDirectory(args.outputDir)
+    # user has specified classes to test, verify they exist
+    if len(args.classesToTest) > 0:
+        allValid = True
+        for _class in args.classesToTest:
+            if _class not in testClasses:
+                allValid = False
+                print(f'{_class} is not a valid test class')
 
-    if valid == False:
+        # store to higher level flag
+        valid = allValid
+
+        # overwrite global for this test run
+        if allValid:
+            testClasses = args.classesToTest
+
+        else:
+            print (f'List of valid classes: {", ".join(testClasses)}')
+
+
+    # we've determined we are valid, do stuff
+    if valid:
+        # create our output directory if it doesn't exist
+        if os.path.isdir(args.outputDir) == False:
+            h.makeDirectory(args.outputDir)
+
+        testResultsDir = os.path.join(args.outputDir, 'testResults')
+        h.makeDirectory(testResultsDir)
+
+        analyzedDataDir = os.path.join(args.outputDir, 'analyzedData')
+        h.makeDirectory(analyzedDataDir)
+    else:
         print("quitting")
+
+    return valid
 
 #***********************************************************************************************************************
 #
@@ -125,6 +218,14 @@ if __name__ == "__main__":
     print ("Stress-ng Test Runner")
 
     parser = argparse.ArgumentParser(description='Stress-Ng Wrapper for Virtual Machines Project')
+
+    parser.add_argument('--class',
+                        dest='classesToTest',
+                        action='append',
+                        type=str,
+                        default=[],
+                        help="Specify which classes of tests to run.  If nothing is supplied, all classes will be run. \
+                             More than one can be provided")
 
     parser.add_argument('-t',
                         dest='timeAllotted',
@@ -170,7 +271,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    validateArgs(args)
+    if validateArgs(args) == False:
+        sys.exit(0)
 
     if args.listStressors:
         ng.outputAllStressorToFile(args.outputDir + '/Stressors.out')
@@ -181,3 +283,5 @@ if __name__ == "__main__":
 
     if args.analyze:
         analyzeData(args)
+
+    sys.exit(0)
