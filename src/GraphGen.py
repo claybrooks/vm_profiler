@@ -45,7 +45,7 @@ def genBargraph(outputDir, dataSet, listOfStats):
             low = min(y_data)
             high = max(y_data)
 
-            plt.ylim([math.ceil(low-.5*(high - low)), math.ceil(high+.5*(high - low))])
+            plt.ylim([0, math.ceil(high+.5*(high - low))])
             plt.xticks(index, x_data)
             plt.bar(index, y_data, align='center', alpha=0.5)
             plt.savefig(outFile)

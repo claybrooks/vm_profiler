@@ -19,20 +19,23 @@ def cpuCommandBuilder(p, t, stressor):
     return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times'
 
 _mem = 'memory'
+_sch = 'scheduler'
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def memoryCommandBuilder(p, t, stressor):
+def simpleCommandBuilder(p, t, stressor):
     return f'stress-ng --{stressor} {p} -t {t}s --metrics-brief --perf --times'
 
 testClasses = [
     _cpu, 
-    _mem
+    _mem,
+    _sch
 ]
 
 classBuilders = {
     _cpu: cpuCommandBuilder, 
-    _mem: memoryCommandBuilder,
+    _mem: simpleCommandBuilder,
+    _sch: simpleCommandBuilder
 }
 
 stressorSets = {
@@ -44,18 +47,27 @@ stressorSets = {
         'fibonacci'
     ],
     _mem: [
-        'bsearch'
+        'bsearch',
+        'hsearch',
+        'tsearch',
+        'memcpy',
+    ],
+    _sch: [
+        'msg',
+        'pthread'
     ]
 }
 
 classGraphGen = {
     _cpu: graph.genBargraph,
     _mem: graph.genBargraph,
+    _sch: graph.genBargraph
 }
 
 classGraphDataSets = {
     _cpu: [('Parallelism', 'Throughput')],
     _mem: [('Parallelism', 'Throughput')],
+    _sch: [('Parallelism', 'Throughput')],
 }
 
 testResultsDir = ''
@@ -100,6 +112,8 @@ def clearTestFolders(args, fullPathToFolder):
 def runTests(args):
     
     clearTestFolders(args, testResultsDir)
+
+    print (f'Running with parallelism of {args.numParallel}')
 
     for name in testClasses:
         runTestClass(args, name, classBuilders[name], stressorSets[name])
@@ -171,7 +185,7 @@ def validateArgs(args):
 
     # check parallelsism
     if args.numParallel == 0:
-        args.numParallel = ng.getHogs()
+        args.numParallel = ng.getHogs() * args.parallelMultipler
         if args.numParallel == -1:
             print ("Couldn't get Hogs")
             valid = False
@@ -242,6 +256,12 @@ if __name__ == "__main__":
                         help='Max parallelism of tests.  Default is 0, which means max parallelism as determined by \
                             stress-ng.  Successive tests will be run from 1 to MAX')
 
+    parser.add_argument('--pmult',
+                        dest='parallelMultipler',
+                        action="store",
+                        type=int,
+                        default=1,
+                        help='Multiplier for parallelism number.  Only used if -p is not provided.')
     parser.add_argument('-o',
                         dest='outputDir',
                         action='store',

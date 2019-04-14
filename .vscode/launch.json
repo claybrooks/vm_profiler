@@ -13,7 +13,7 @@
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "-c",
                 "-r",
-                "-p", "8",
+                "--pmult", "2",
                 "-t", "3",
                 "-a"
             ],
@@ -29,7 +29,7 @@
                 "--class", "cpu",
                 "-c",
                 "-r",
-                "-p", "8",
+                "--pmult", "2",
                 "-t", "3",
                 "-a"
             ],
@@ -45,14 +45,30 @@
                 "--class", "memory",
                 "-c",
                 "-r",
-                "-p", "8",
+                "--pmult", "2",
                 "-t", "3",
                 "-a"
             ],
             "console": "integratedTerminal"
         },
         {
-            "name": "AnalyzeResults.py",
+            "name": "RunSchedulerTests.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "scheduler",
+                "-c",
+                "-r",
+                "--pmult", "2",
+                "-t", "3",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "AnalyzeAllResults.py",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
@@ -82,6 +98,18 @@
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "--class", "memory",
+                "-a"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "AnalyzeSchedulerResults.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "--class", "scheduler",
                 "-a"
             ],
             "console": "integratedTerminal"
