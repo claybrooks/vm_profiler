@@ -61,7 +61,7 @@ def runTestClass(args, name, commandBuilder, stressorSet):
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def RunTests(args):
+def runTests(args):
 
     # clear the output first
     if os.path.isdir(args.outputDir):
@@ -78,6 +78,27 @@ def RunTests(args):
 
     for name, command in testClasses.items():
         runTestClass(args, name, command, stressorSets[name])
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def analyzeData(args):
+
+    # each directory here is a test class, ignore files
+    for outputDir, testClasses, _ in os.walk(args.outputDir):
+        # iterate through each test class
+        for testClass in testClasses:
+            # walk through each folder
+            for _, testSets, _ in os.walk(os.path.join(outputDir, testClass)):
+                # iterate through each test set
+                for testSet in testSets:
+                    # walk through each folder
+                    for _, _, results in os.walk(os.path.join(outputDir, testClass, testSet)):
+                        # go through each result
+                        for result in results:
+                            # parse the data
+                            parsedData = ng.parseOutput(os.path.join(outputDir, testClass, testSet, result))
+
 
 #***********************************************************************************************************************
 #
@@ -132,6 +153,16 @@ if __name__ == "__main__":
                         help='If this flag is provided, all stressors will be output to -o/Stressors.out  No tests will\
                             be run when this flag is provided.')
 
+    parser.add_argument('-a',
+                        dest='analyze',
+                        action='store_true',
+                        help='If this flag is provided, data will be analyzed')
+
+    parser.add_argument('-r',
+                        dest='runTests',
+                        action='store_true',
+                        help='If this flag is provided, tests will be run')
+
     parser.add_argument('-c',
                         dest='clean',
                         action='store_true',
@@ -145,4 +176,8 @@ if __name__ == "__main__":
         ng.outputAllStressorToFile(args.outputDir + '/Stressors.out')
         sys.exit(0)
 
-    RunTests(args)
+    if args.runTests:
+        runTests(args)
+
+    if args.analyze:
+        analyzeData(args)

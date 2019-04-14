@@ -6,6 +6,7 @@ import TestGroups as t
 
 # built in
 import subprocess as sp
+import re
 
 #***********************************************************************************************************************
 #
@@ -43,6 +44,61 @@ def outputAllStressorToFile(file):
 
     h.outputToFile(file, output)
 
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def parseOutput(fullPathToFile):
+    # some helper strings for searching
+    hogs        = 'hogs: '
+    time        = 'completed in '
+    stressor    = 'stressor'
+    cpu         = 'cpu'
+    cpu_colon   = 'cpu: '
+
+    # some helper bools to flag what section we are in
+    onStressor = False
+
+    # holder for output
+    data = {}
+    
+    # open the file
+    with open(fullPathToFile, 'r') as f:
+        # iterate over each line
+        for line in f:
+            # wait for proper stressor line
+            if onStressor == True:
+                # we are on the right line
+                if cpu in line:
+                    # split up the data
+                    list_of_data = line.split(cpu)[1]
+                    list_of_data = re.sub(' +', ' ', list_of_data).lstrip(' ').rstrip(' ').split(' ')
+
+                    # fill in data
+                    data['bogo'] = list_of_data[0]
+                    data['real_time'] = list_of_data[1]
+                    data['usr_time'] = list_of_data[2]
+                    data['sys_time'] = list_of_data[3]
+                    data['bogo_ops_s'] = list_of_data[4]
+                    data['bogo_ops_s_total'] = list_of_data[5]
+
+                    onStressor = False
+
+                # nothing interesting yet
+                else:
+                    continue
+                    
+            # count hogs
+            if hogs in line:
+                data['hogs'] = h.getStringBetween(line, hogs, ' ')
+            # count time
+            elif time in line:
+                data['time'] = h.getStringBetween(line, time, 's')
+            elif stressor in line:
+                onStressor = True
+                
+
+
+        # start looking for data
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************

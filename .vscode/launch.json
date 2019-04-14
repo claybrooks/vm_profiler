@@ -12,7 +12,19 @@
             "args": [
                 "-o", "${workspaceFolder}/Output/$USER/",
                 "-c",
+                "-r",
                 "-t", "10"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "AnalyzeResults.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "${workspaceFolder}/Output/$USER/",
+                "-a"
             ],
             "console": "integratedTerminal"
         },
