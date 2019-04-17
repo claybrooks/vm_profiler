@@ -63,72 +63,76 @@ def parseOutput(fullPathToFile):
     # holder for output
     data = {}
     
-    # open the file
-    with open(fullPathToFile, 'r') as f:
-        # iterate over each line
-        for line in f:
-            # wait for proper stressor line
-            if onStressor == True:
-                bogoLineStarts -= 1
+    try:
+        # open the file
+        with open(fullPathToFile, 'r') as f:
+            # iterate over each line
+            for line in f:
+                # wait for proper stressor line
+                if onStressor == True:
+                    bogoLineStarts -= 1
 
-                # we are on the right line
-                if bogoLineStarts == 0:
-                    # split up the data
-                    list_of_data = line.split(']')[1]
-                    list_of_data = re.sub(' +', ' ', list_of_data).lstrip(' ').rstrip(' ').split(' ')
+                    # we are on the right line
+                    if bogoLineStarts == 0:
+                        # split up the data
+                        list_of_data = line.split(']')[1]
+                        list_of_data = re.sub(' +', ' ', list_of_data).lstrip(' ').rstrip(' ').split(' ')
 
-                    # fill in data
-                    index = 1
-                    data['Bogo']            = list_of_data[index]
-                    index += 1
-                    data['Real Time (s)']   = list_of_data[index]
-                    index += 1
-                    data['User Time (s)']   = list_of_data[index]
-                    index += 1
-                    data['Sys Time (s)']    = list_of_data[index]
-                    index += 1
-                    data['Throughput']      = list_of_data[index]
-                    index += 1
-                    #data['bogo_ops_s_total'] = list_of_data[5].rstrip('\n')
+                        # fill in data
+                        index = 1
+                        data['Bogo']            = list_of_data[index]
+                        index += 1
+                        data['Real Time (s)']   = list_of_data[index]
+                        index += 1
+                        data['User Time (s)']   = list_of_data[index]
+                        index += 1
+                        data['Sys Time (s)']    = list_of_data[index]
+                        index += 1
+                        data['Throughput']      = list_of_data[index]
+                        index += 1
+                        #data['bogo_ops_s_total'] = list_of_data[5].rstrip('\n')
 
-                    onStressor  = False
-                    stressorDone = True
+                        onStressor  = False
+                        stressorDone = True
 
-                # nothing interesting yet
-                else:
-                    continue
-            elif onDetailed == True:
-                # This is the end of the section
-                if emulationFaults in line:
-                    onDetailed = False      
+                    # nothing interesting yet
+                    else:
+                        continue
+                elif onDetailed == True:
+                    # This is the end of the section
+                    if '/sec' not in line:
+                        onDetailed = False 
+                        continue     
 
-                line = line.split(']')[1]
-                line = re.sub(' +', ' ', line).lstrip(' ').rstrip(' ').split(' ')
+                    line = line.split(']')[1]
+                    line = re.sub(' +', ' ', line).lstrip(' ').rstrip(' ').split(' ')
 
-                num = line[0]
-                rateStart = 1
-                for i in range(1, len(line)):
-                    if line[i][0].isdigit():
-                        rateStart = i
-                        break
-                
-                name = ' '.join(line[1:rateStart])
-                rate = ''.join(line[rateStart:-1])
+                    num = line[0]
+                    rateStart = 1
+                    for i in range(1, len(line)):
+                        if line[i][0].isdigit():
+                            rateStart = i
+                            break
+                    
+                    name = ' '.join(line[1:rateStart])
+                    rate = ''.join(line[rateStart:-1])
 
-                data[name] = num
-                data[name+" Rate"] = rate
-            else:  
-                # count hogs
-                if hogs in line:
-                    data['Parallelism'] = h.getStringBetween(line, hogs, ' ')
-                # count time
-                elif time in line:
-                    data['time'] = h.getStringBetween(line, time, 's')
-                elif stressor in line:
-                    onStressor = True
-                elif onStressor == False and stressorDone == True:
-                    onDetailed = True
-                
+                    data[name] = num
+                    data[name+" Rate"] = rate
+                else:  
+                    # count hogs
+                    if hogs in line:
+                        data['Parallelism'] = h.getStringBetween(line, hogs, ' ')
+                    # count time
+                    elif time in line:
+                        data['time'] = h.getStringBetween(line, time, 's')
+                    elif stressor in line:
+                        onStressor = True
+                    elif onStressor == False and stressorDone == True:
+                        onDetailed = True
+                        stressorDone = False
+    except Exception as e:
+        pass
     return data
 
 #***********************************************************************************************************************

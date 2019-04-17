@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "-c",
                 "-r",
                 "--pmult", "2",
@@ -25,7 +25,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "cpu",
                 "-c",
                 "-r",
@@ -41,7 +41,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "memory",
                 "-c",
                 "-r",
@@ -57,7 +57,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "scheduler",
                 "-c",
                 "-r",
@@ -73,7 +73,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "-a",
                 "-c"
             ],
@@ -85,7 +85,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "cpu",
                 "-a",
                 "-c"
@@ -98,7 +98,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "memory",
                 "-a",
                 "-c"
@@ -111,7 +111,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": [
-                "-o", "${workspaceFolder}/Output/$USER/",
+                "-o", "~/Desktop/vm_results",
                 "--class", "scheduler",
                 "-a",
                 "-c"
@@ -123,7 +123,7 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
-            "args": ["-l", "-o", "${workspaceFolder}/Output/$USER/"],
+            "args": ["-l", "-o", "~/Desktop/vm_results"],
             "console": "integratedTerminal"
         }
     ]

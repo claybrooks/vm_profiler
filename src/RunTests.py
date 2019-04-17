@@ -67,27 +67,15 @@ classGraphGen = {
 classGraphDataSets = {
     _cpu: [
         ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults Total'),
-        ('Parallelism',     'Context Switches'),
-        ('Parallelism',     'CPU Migrations'),
-        ('Context Switches','Throughput'),
-        ('CPU Migrations',  'Throughput'),
+        ('Parallelism',     'Page Faults User'),
     ],
     _mem: [
         ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults Total'),
-        ('Parallelism',     'Context Switches'),
-        ('Parallelism',     'CPU Migrations'),
-        ('Context Switches','Throughput'),
-        ('CPU Migrations',  'Throughput'),
+        ('Parallelism',     'Page Faults User'),
     ],
     _sch: [
         ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults Total'),
-        ('Parallelism',     'Context Switches'),
-        ('Parallelism',     'CPU Migrations'),
-        ('Context Switches','Throughput'),
-        ('CPU Migrations',  'Throughput'),
+        ('Parallelism',     'Page Faults User'),
     ],
 }
 
