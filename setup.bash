@@ -4,9 +4,9 @@
 chmod +x src/*.py
 
 # install stress-ng
-sudo apt install stress-ng
-sudo apt install python3-matplotlib
+sudo apt install -y stress-ng
+sudo apt install -y python3-matplotlib
 
-sudo apt install linux-tools-common
-sudo apt install linux-tools-generic
-sudo apt install linux-tools-$(uname -r)
+sudo apt install -y linux-tools-common
+sudo apt install -y linux-tools-generic
+sudo apt install -y linux-tools-$(uname -r)
