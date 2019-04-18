@@ -17,7 +17,7 @@ cd $1
 zip -r $resultsFolder/$USER.zip *
 cd $prior
 
-git add $USER.zip
+git add $resultsFolder/$USER.zip
 git commit -m "Adding results from ${USER}"
 git push
 
