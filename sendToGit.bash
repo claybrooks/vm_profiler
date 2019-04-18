@@ -9,8 +9,13 @@ git config --global user.name "Clay Brooks"
 git config --global user.email "clay_brooks@outlook.com"
 
 mkdir -p results
+prior=$PWD
+resultsFolder=$PWD/results
 
-zip -r -j results/$USER.zip $1
+# go to target directory
+cd $1
+zip -r $resultsFolder/$USER.zip *
+cd $prior
 
 git add $USER.zip
 git commit -m "Adding results from ${USER}"
