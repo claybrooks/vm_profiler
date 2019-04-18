@@ -119,6 +119,20 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "AnalyzeVMResults.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/RunTests.py",
+            "args": [
+                "-o", "~/Desktop/vm_results",
+                "-a",
+                "--vm",
+                "--vmresults", "${workspaceFolder}/results",
+                "-c"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "ListStressors.py",
             "type": "python",
             "request": "launch",

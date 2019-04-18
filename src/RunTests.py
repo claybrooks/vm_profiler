@@ -10,6 +10,7 @@ import StressNg as ng
 import argparse
 import os
 import sys
+import zipfile
 
 _cpu = 'cpu'
 #***********************************************************************************************************************
@@ -81,6 +82,7 @@ classGraphDataSets = {
 
 testResultsDir = ''
 analyzedDataDir = ''
+analyzedAggregateData = ''
 
 #***********************************************************************************************************************
 #
@@ -126,6 +128,30 @@ def runTests(args):
 
     for name in testClasses:
         runTestClass(args, name, classBuilders[name], stressorSets[name])
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def analyzeVMData(args):
+
+    print (f'Analayzing folder {args.vmResultsDirectory} as aggregate VM results folder')
+
+    # clearing previous results
+    clearTestFolders(args, analyzedAggregateData)
+
+    for filename in os.listdir(args.outputDir):
+        extension = os.path.splitext(filename)[1]
+
+        # we are only lookin at zips
+        if extension != '.zip':
+            continue
+
+        print (f'Found results for {filename}')
+        
+        with zipfile.ZipFile(filename, 'r') as f:
+            for name in f.namelist():
+                data = f.read(name)
+
 
 #***********************************************************************************************************************
 #
@@ -192,6 +218,7 @@ def validateArgs(args):
     global testClasses
     global testResultsDir
     global analyzedDataDir
+    global analyzedAggregateData
 
     # track if our arguments are valid
     valid = True
@@ -221,6 +248,9 @@ def validateArgs(args):
         else:
             print (f'List of valid classes: {", ".join(testClasses)}')
 
+    if args.vmAnalysis and os.path.isdir(args.vmResultsDirectory) == False:
+        print(f'Invalid aggregate VM Results Path: {args.vmResultsDirectory}')
+        valid = False
 
     # we've determined we are valid, do stuff
     if valid:
@@ -233,6 +263,9 @@ def validateArgs(args):
 
         analyzedDataDir = os.path.join(args.outputDir, 'analyzedData')
         h.makeDirectory(analyzedDataDir)
+
+        analyzedAggregateData = os.path.join(args.outputDir, 'analyzedAggregateData')
+        h.makeDirectory(analyzedAggregateData)
     else:
         print("quitting")
 
@@ -275,6 +308,7 @@ if __name__ == "__main__":
                         type=int,
                         default=1,
                         help='Multiplier for parallelism number.  Only used if -p is not provided.')
+
     parser.add_argument('-o',
                         dest='outputDir',
                         action='store',
@@ -291,6 +325,18 @@ if __name__ == "__main__":
                         dest='analyze',
                         action='store_true',
                         help='If this flag is provided, data will be analyzed')
+
+    parser.add_argument('--vm',
+                        dest='vmAnalysis',
+                        action='store_true',
+                        help='If this flag is provided, data will be analyzed for aggregate vm results.  -a also has to be provided, as well as -o to the \
+                            aggregate results folder')
+
+    parser.add_argument('--vmresults',
+                        dest='vmResultsDirectory',
+                        action='store',
+                        type=str,
+                        help='Location of all vm aggregate results to read from')
 
     parser.add_argument('-r',
                         dest='runTests',
@@ -315,6 +361,9 @@ if __name__ == "__main__":
         runTests(args)
 
     if args.analyze:
-        analyzeData(args)
+        if args.vmAnalysis:
+            analyzeVMData(args)
+        else:
+            analyzeData(args)
 
     sys.exit(0)
