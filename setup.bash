@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# useful
+sudo apt install -y chromium-browser
+sudo apt install -y vim
+sudo apt install -y net-tools
+
 # add executability
 chmod +x src/*.py
 
