@@ -168,9 +168,13 @@ def runAggregateAnalysis(args):
 
     # iterate over each one
     for _dir in next(os.walk(tempExtractionDir))[1]:
+        print (f'Start Analyzing {_dir}')
         agData[_dir] = analyzeData(args, os.path.join(tempExtractionDir, _dir, testResults))
 
-    temp = 0
+    graph.genAggregateBargraph(analyzedAggregateData, agData, classGraphDataSets)
+
+    h.cleanFolder(tempExtractionDir)
+    os.rmdir(tempExtractionDir)
 
 #***********************************************************************************************************************
 #
@@ -183,9 +187,6 @@ def runVMAnalysis(args):
 #
 #***********************************************************************************************************************
 def analyzeData(args, directoryToAnalyze):
-
-    print("Analyzing Data")
-
     parsedData = {}
 
     # each directory here is a test class, ignore files
@@ -206,6 +207,8 @@ def analyzeData(args, directoryToAnalyze):
 
                 # iterate through each test set
                 for testSet in testSets:
+
+                    print(f'Analyzing {testClass}:{testSet}')
                     classData[testSet] = {}
                     testSetData = classData[testSet]
 

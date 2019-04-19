@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# update ourselves
+git pull
+
 paraFile=/proc/sys/kernel/perf_event_paranoid
 
 # store users current paranoid level
