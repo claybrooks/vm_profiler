@@ -1,0 +1,8 @@
+[Unit]
+Description=VM Profiler Service
+
+[Service]
+ExecStart=~/Desktop/git/vm_profiler/runAllTests.bash
+
+[Install]
+WantedBy=multi-user.target
