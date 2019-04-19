@@ -1,5 +1,6 @@
 #!/bin/bash
 
+setenv MY_USER=$USER
 # useful
 sudo apt install -y chromium-browser
 sudo apt install -y vim
@@ -18,6 +19,6 @@ sudo apt install -y linux-tools-generic
 sudo apt install -y linux-tools-$(uname -r)
 
 # install our service
-sudo cp runAllTests.bash /etc/init.d/runAllTests.bash
-sudo chmod +x /etc/init.d/runAllTests.bash
-sudo update-rc.d runAllTests.bash defaults
+sudo mv vm_profiler.service /etc/systemd/system
+chmod u+x ~/Desktop/git/vm_profiler/runAllTests.bash
+sudo systemctl enable vm_profiler
