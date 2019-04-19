@@ -14,7 +14,7 @@ resultsFolder=$PWD/results
 
 # go to target directory
 cd $1
-zip -r $resultsFolder/$USER.zip *
+zip -r -FS $resultsFolder/$USER.zip *
 cd $prior
 
 git add $resultsFolder/$USER.zip

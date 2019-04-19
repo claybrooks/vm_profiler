@@ -7,6 +7,24 @@ import Helper as h
 import math
 import matplotlib.pyplot as plt
 import os
+import pandas as pd
+
+def extractTestResults(results, x, y):
+    num_results = len(results.items())
+    index   = list(range(0, num_results))
+    x_data  = [0] * num_results
+    y_data  = [0] * num_results
+
+    iter = 0
+    for _, data in results.items():
+        x_data[iter] = int(float(data[x].replace(',','')))
+        y_data[iter] = int(float(data[y].replace(',','')))
+        iter += 1
+
+    x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
+
+    return index, x_data, y_data
+
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
@@ -28,19 +46,7 @@ def genBargraph(outputDir, dataSet, listOfStats):
             plt.ylabel(y)
             plt.xlabel(x)
 
-            num_results = len(results.items())
-            index   = list(range(0, num_results))
-            x_data  = [0] * num_results
-            y_data  = [0] * num_results
-
-            # temporarily display bogo ops per group of CPU
-            iter = 0
-            for _, data in results.items():
-                x_data[iter] = int(float(data[x].replace(',','')))
-                y_data[iter] = int(float(data[y].replace(',','')))
-                iter += 1
-
-            x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
+            index, x_data, y_data = extractTestResults(results, x, y)
 
             low = min(y_data)
             high = max(y_data)
@@ -50,3 +56,86 @@ def genBargraph(outputDir, dataSet, listOfStats):
             plt.bar(index, y_data, align='center', alpha=0.5)
             plt.savefig(outFile)
             plt.clf()
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def genAggregateBargraph(outputDir, aggregateData, listOfStats):
+
+    # get the keys, these are the different groups
+    vms = list(aggregateData.keys())
+
+    # assume they allhave the same exact tests run!
+    testGroups = aggregateData[vms[0]].keys()
+
+    # high level
+    rawData = {}
+
+    colors = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#00FFFF', '#FFFF00']
+
+    # iterate over each test group
+    for group in testGroups:
+        # assume each test group has the same set of tests!
+        testSets = list(aggregateData[vms[0]][group].keys())
+
+        # now iterate over each test set
+        for testSet in testSets:
+            print (f'Graphing {group}:{testSet}')
+
+            # we have multiple relationships we want to show
+            for x,y in listOfStats[group]:
+
+                dataToGraph = {}
+
+                # now, extract vm specific data
+                first = True
+                for vm in vms:
+                    
+                    index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet], x, y)
+
+                    dataToGraph[vm] = y_data
+                    
+                    if first:
+                        dataToGraph[x] = x_data
+                        first = False
+
+                _columns = [x] + vms
+                df = pd.DataFrame(dataToGraph, columns=_columns)
+
+                pos = index
+                width = .2
+
+                fig, ax = plt.subplots(figsize=(20,10))
+
+                index = 0
+                for vm in vms:
+                    
+                    _list = []
+
+                    if index == 0:
+                        _list = pos
+                    else:
+                        _list = [p + (width*index) for p in pos]
+
+                    plt.bar(_list,
+                        df[vm],
+                        width,
+                        alpha=.5,
+                        color=colors[index],
+                        label=df[vm][index]
+                    )
+
+                    index += 1
+
+                saveTo = os.path.join(outputDir, group, testSet)
+                h.makeDirectory(saveTo)
+                saveTo = os.path.join(saveTo, f'{x}_{y}.png')
+                ax.set_ylabel(y)
+                ax.set_xlabel(x)
+                ax.set_title(f'{testSet}: {y}')
+                ax.set_xticks([p + 5* width for p in pos])
+                ax.set_xticklabels(df[x])
+                plt.legend(vms, loc='upper left')
+                plt.savefig(saveTo)
+                plt.clf()
+                plt.close()

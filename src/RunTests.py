@@ -80,6 +80,9 @@ classGraphDataSets = {
     ],
 }
 
+testResults = 'testResults'
+analyzedResults = 'analyzedData'
+aggregateResults = 'aggregateData'
 testResultsDir = ''
 analyzedDataDir = ''
 analyzedAggregateData = ''
@@ -117,6 +120,7 @@ def clearTestFolders(args, fullPathToFolder):
             # only clean classes we are running
             for _class in testClasses:
                 h.cleanFolder(os.path.join(fullPathToFolder, _class))
+
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
@@ -132,38 +136,61 @@ def runTests(args):
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def analyzeVMData(args):
+def runAggregateAnalysis(args):
 
     print (f'Analayzing folder {args.vmResultsDirectory} as aggregate VM results folder')
 
-    # clearing previous results
-    clearTestFolders(args, analyzedAggregateData)
 
-    for filename in os.listdir(args.outputDir):
+    # clearing previous results
+    h.cleanFolder(analyzedAggregateData)
+    
+    tempExtractionDir = os.path.join(analyzedAggregateData, 'temp')
+    h.makeDirectory(tempExtractionDir)
+
+    for filename in os.listdir(args.vmResultsDirectory):
+        # join immediately
+        fullPathToFile = os.path.join(args.vmResultsDirectory, filename)
+
         extension = os.path.splitext(filename)[1]
+        filename = os.path.splitext(filename)[0]
 
         # we are only lookin at zips
         if extension != '.zip':
             continue
 
-        print (f'Found results for {filename}')
+        print (f'Found results for {fullPathToFile}')
         
-        with zipfile.ZipFile(filename, 'r') as f:
-            for name in f.namelist():
-                data = f.read(name)
+        # extract everything
+        zipfile.ZipFile(fullPathToFile, 'r').extractall(os.path.join(tempExtractionDir, filename))
 
+    # now that we've extracted everything, process the folder like normal
+    agData = {}
+
+    # iterate over each one
+    for _dir in next(os.walk(tempExtractionDir))[1]:
+        print (f'Start Analyzing {_dir}')
+        agData[_dir] = analyzeData(args, os.path.join(tempExtractionDir, _dir, testResults))
+
+    graph.genAggregateBargraph(analyzedAggregateData, agData, classGraphDataSets)
+
+    h.cleanFolder(tempExtractionDir)
+    os.rmdir(tempExtractionDir)
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def analyzeData(args):
+def runVMAnalysis(args):
+    parsedData = analyzeData(args, testResultsDir)
+    generateGraphs(args, parsedData)
 
-    print("Analyzing Data")
-
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def analyzeData(args, directoryToAnalyze):
     parsedData = {}
 
     # each directory here is a test class, ignore files
-    for topLevel, folders, _ in os.walk(testResultsDir):
+    for topLevel, folders, _ in os.walk(directoryToAnalyze):
 
         # iterate through each test class
         for testClass in folders:
@@ -180,6 +207,8 @@ def analyzeData(args):
 
                 # iterate through each test set
                 for testSet in testSets:
+
+                    print(f'Analyzing {testClass}:{testSet}')
                     classData[testSet] = {}
                     testSetData = classData[testSet]
 
@@ -193,9 +222,7 @@ def analyzeData(args):
                 break
         # break after iterating through all testClasses
         break
-
-    generateGraphs(args, parsedData)
-
+    return parsedData
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
@@ -258,13 +285,13 @@ def validateArgs(args):
         if os.path.isdir(args.outputDir) == False:
             h.makeDirectory(args.outputDir)
 
-        testResultsDir = os.path.join(args.outputDir, 'testResults')
+        testResultsDir = os.path.join(args.outputDir, testResults)
         h.makeDirectory(testResultsDir)
 
-        analyzedDataDir = os.path.join(args.outputDir, 'analyzedData')
+        analyzedDataDir = os.path.join(args.outputDir, analyzedResults)
         h.makeDirectory(analyzedDataDir)
 
-        analyzedAggregateData = os.path.join(args.outputDir, 'analyzedAggregateData')
+        analyzedAggregateData = os.path.join(args.outputDir, aggregateResults)
         h.makeDirectory(analyzedAggregateData)
     else:
         print("quitting")
@@ -362,8 +389,8 @@ if __name__ == "__main__":
 
     if args.analyze:
         if args.vmAnalysis:
-            analyzeVMData(args)
+            runAggregateAnalysis(args)
         else:
-            analyzeData(args)
+            runVMAnalysis(args)
 
     sys.exit(0)
