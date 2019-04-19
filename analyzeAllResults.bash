@@ -1,3 +1,7 @@
 #!/bin/bash
 
-sudo ./src/RunTests.py -o ~/Desktop/vm_results -a -c
+outputFolder=~/Desktop/vm_results
+
+sudo ./src/RunTests.py -o $outputFolder -a -c
+
+./sendToGit.bash $outputFolder

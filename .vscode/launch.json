@@ -17,7 +17,8 @@
                 "-t", "3",
                 "-a"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "RunCPUTests.py",
@@ -30,10 +31,11 @@
                 "-c",
                 "-r",
                 "--pmult", "2",
-                "-t", "3",
+                "-t", "1",
                 "-a"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "RunMemoryTests.py",
@@ -49,7 +51,8 @@
                 "-t", "3",
                 "-a"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "RunSchedulerTests.py",
@@ -65,7 +68,8 @@
                 "-t", "3",
                 "-a"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "AnalyzeAllResults.py",
@@ -77,7 +81,8 @@
                 "-a",
                 "-c"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "AnalyzeCPUResults.py",
@@ -90,7 +95,8 @@
                 "-a",
                 "-c"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "AnalyzeMemoryResults.py",
@@ -103,7 +109,8 @@
                 "-a",
                 "-c"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "AnalyzeSchedulerResults.py",
@@ -116,7 +123,8 @@
                 "-a",
                 "-c"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "AnalyzeVMResults.py",
@@ -130,7 +138,8 @@
                 "--vmresults", "${workspaceFolder}/results",
                 "-c"
             ],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         },
         {
             "name": "ListStressors.py",
@@ -138,7 +147,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/src/RunTests.py",
             "args": ["-l", "-o", "~/Desktop/vm_results"],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "sudo":true
         }
     ]
 }

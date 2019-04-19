@@ -8,76 +8,106 @@ import StressNg as ng
 
 # built in
 import argparse
+from collections import Counter
 import os
 import sys
 import zipfile
 
 _cpu = 'cpu'
-#***********************************************************************************************************************
-#
-#***********************************************************************************************************************
-def cpuCommandBuilder(p, t, stressor):
-    return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times'
-
 _mem = 'memory'
 _sch = 'scheduler'
-#***********************************************************************************************************************
-#
-#***********************************************************************************************************************
-def simpleCommandBuilder(p, t, stressor):
-    return f'stress-ng --{stressor} {p} -t {t}s --metrics-brief --perf --times'
+_io  = 'io'
 
 testClasses = [
     _cpu, 
     _mem,
-    _sch
+    _sch,
+    _io,
 ]
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def simpleCommandBuilder(p, t, _class, stressor, separateInstances):
+    if separateInstances:
+        return f'stress-ng --{stressor} {p} --{stressor}-ops {stressorBogoLimit[_class][stressor]} --metrics-brief --perf --times'
+    else:
+        return f'stress-ng --{stressor} {p} -t {t}s --metrics-brief --perf --times'
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def cpuCommandBuilder(p, t, _class, stressor, separateInstances):
+    if separateInstances:
+        return f'stress-ng --cpu 1 --cpu-method {stressor} --cpu-ops {stressorBogoLimit[_class][stressor]} --metrics-brief --perf --times'
+    else:
+        return f'stress-ng --cpu {p} --cpu-method {stressor} -t {t}s --metrics-brief --perf --times'
 
 classBuilders = {
     _cpu: cpuCommandBuilder, 
     _mem: simpleCommandBuilder,
-    _sch: simpleCommandBuilder
+    _sch: simpleCommandBuilder,
+    _io:  simpleCommandBuilder,
 }
 
 stressorSets = {
     _cpu: [
         'hanoi', 
-        'dither', 
-        'euler', 
-        'factorial', 
-        'fibonacci'
+        #'dither', 
+        #'euler', 
+        #'pi', 
+        #'fibonacci'
     ],
     _mem: [
-        'bsearch',
-        'hsearch',
-        'tsearch',
+        #'bsearch',
+        #'hsearch',
+        #'tsearch',
         'memcpy',
     ],
     _sch: [
-        'msg',
         'pthread'
+    ],
+    _io:[
+        #'hdd',
+        'aio',
+        #'rawdev',
     ]
+}
+
+stressorBogoLimit = {
+    _cpu: {
+        'hanoi': 500
+    },
+    _mem: {
+        'memcpy': 10000,
+    },
+    _sch: {
+        'pthread': 10000,
+    },
+    _io: {
+        'aio': 10000,
+    }
 }
 
 classGraphGen = {
     _cpu: graph.genBargraph,
     _mem: graph.genBargraph,
-    _sch: graph.genBargraph
+    _sch: graph.genBargraph,
+    _io:  graph.genBargraph,
 }
 
+commonSets = [
+    ('Parallelism',     'Throughput'),
+    ('Parallelism',     'Page Faults User'),
+    ('Parallelism',     'System Call Enter'),
+    ('Parallelism',     'time')
+]
+
 classGraphDataSets = {
-    _cpu: [
-        ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults User'),
-    ],
-    _mem: [
-        ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults User'),
-    ],
-    _sch: [
-        ('Parallelism',     'Throughput'),
-        ('Parallelism',     'Page Faults User'),
-    ],
+    _cpu: commonSets,
+    _mem: commonSets,
+    _sch: commonSets,
+    _io:  commonSets,
 }
 
 testResults = 'testResults'
@@ -90,7 +120,7 @@ analyzedAggregateData = ''
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def runTestClass(args, name, commandBuilder, stressorSet):
+def runTestClass(args, name, commandBuilder, stressorSet, separateInstances):
     global testResultsDir
 
     print (f'Starting {name} Group')
@@ -99,15 +129,33 @@ def runTestClass(args, name, commandBuilder, stressorSet):
     t = args.timeAllotted
 
     testGroupDir = testResultsDir + f'/{name}'
-
+    
     for stressor in stressorSet:
         print (f'\tStarting {stressor}')
         testSetDir = testGroupDir + f'/{stressor}'
 
         for i in range(1,p+1):
-            command = commandBuilder(i, t, stressor)
-            fileName = testSetDir + f'/{i}_{t}.results'
-            ng.RunAndSaveResults(fileName, command, 1)
+            command = commandBuilder(i, t, name, stressor, separateInstances)
+            print(f'\t\tP={i}')
+            # running as a single stress-ng instance
+            if not separateInstances:
+                fileName = os.path.join(testSetDir, f'{i}_{t}.results')
+                ng.RunAndSaveResults(fileName, command, 1)
+            # running as multiple
+            else:
+                processes = []
+
+                # spawn the appropriate number of processes
+                for _ in range(0, i):
+                    processes.append(ng.runCommand(command))
+
+                allOuputs = ng.getOutputs(processes)
+                
+                iter = 0
+                for output in allOuputs:
+                    fileName = os.path.join(testSetDir, 'separateInstances', f'{i}', f'{iter}.results')
+                    ng.saveResults(fileName, output)
+                    iter += 1
 
 #***********************************************************************************************************************
 #
@@ -131,7 +179,10 @@ def runTests(args):
     print(f'Running with parallelism of {args.numParallel}')
 
     for name in testClasses:
-        runTestClass(args, name, classBuilders[name], stressorSets[name])
+        print(f'Single Instance Stress-ng')
+        runTestClass(args, name, classBuilders[name], stressorSets[name], False)
+        print (f'Multi Instance Stress-ng')
+        runTestClass(args, name, classBuilders[name], stressorSets[name], True)
 
 #***********************************************************************************************************************
 #
@@ -139,7 +190,6 @@ def runTests(args):
 def runAggregateAnalysis(args):
 
     print (f'Analayzing folder {args.vmResultsDirectory} as aggregate VM results folder')
-
 
     # clearing previous results
     h.cleanFolder(analyzedAggregateData)
@@ -181,6 +231,8 @@ def runAggregateAnalysis(args):
 #***********************************************************************************************************************
 def runVMAnalysis(args):
     parsedData = analyzeData(args, testResultsDir)
+
+    # got our parsed data, now we need to do a bit of work on the separate instance thing
     generateGraphs(args, parsedData)
 
 #***********************************************************************************************************************
@@ -211,13 +263,46 @@ def analyzeData(args, directoryToAnalyze):
                     print(f'Analyzing {testClass}:{testSet}')
                     classData[testSet] = {}
                     testSetData = classData[testSet]
+                    
+                    testSetData['singleInstance'] = {}
+                    singleInstance = testSetData['singleInstance']
 
                     # walk through each folder
-                    for _, _, results in os.walk(os.path.join(topLevel, testClass, testSet)):
+                    for _dir, _subdirs, results in os.walk(os.path.join(topLevel, testClass, testSet)):
                         # go through each result
                         for result in results:
-                            testSetData[result] = ng.parseOutput(os.path.join(topLevel, testClass, testSet, result))
+                            singleInstance[result] = ng.parseOutput(os.path.join(topLevel, testClass, testSet, result))
 
+                        break
+
+                    # walk through the separate instance test
+                    testSetData['multiInstance'] = {}
+                    multiInstance = testSetData['multiInstance']
+
+                    for _dir, _subdirs, results in os.walk(os.path.join(topLevel, testClass, testSet, 'separateInstances')):
+                        for _subdir in _subdirs:
+
+                            results = []
+                            for result in os.listdir(os.path.join(topLevel, testClass, testSet, 'separateInstances', _subdir)):
+                                results.append(ng.parseOutput(os.path.join(topLevel, testClass, testSet, 'separateInstances', _subdir, result)))
+
+                            # now average all of the results
+                            sums = Counter()
+                            counters = Counter()
+                            for itemset in results:
+                                sums.update(itemset)
+                                counters.update(itemset.keys())
+
+                            result = {x:float(sums[x])/counters[x] for x in sums.keys()}
+
+                            # parallelism number report by ng is not 'correct', we know that it is actually
+                            # more.  The real parallelism number is the subdir that these results are located
+                            # in
+                            result["Parallelism"] = int(_subdir)
+
+                            multiInstance[_subdir] = result
+
+                        break
                 # break after iterating through all testSets
                 break
         # break after iterating through all testClasses
@@ -252,7 +337,7 @@ def validateArgs(args):
 
     # check parallelsism
     if args.numParallel == 0:
-        args.numParallel = ng.getHogs() * args.parallelMultipler
+        args.numParallel = int(ng.getHogs() * args.parallelMultipler)
         if args.numParallel == -1:
             print ("Couldn't get Hogs")
             valid = False
@@ -332,7 +417,7 @@ if __name__ == "__main__":
     parser.add_argument('--pmult',
                         dest='parallelMultipler',
                         action="store",
-                        type=int,
+                        type=float,
                         default=1,
                         help='Multiplier for parallelism number.  Only used if -p is not provided.')
 

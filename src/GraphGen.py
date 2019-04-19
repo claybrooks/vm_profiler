@@ -17,8 +17,8 @@ def extractTestResults(results, x, y):
 
     iter = 0
     for _, data in results.items():
-        x_data[iter] = int(float(data[x].replace(',','')))
-        y_data[iter] = int(float(data[y].replace(',','')))
+        x_data[iter] = data[x]
+        y_data[iter] = data[y]
         iter += 1
 
     x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
@@ -31,31 +31,35 @@ def extractTestResults(results, x, y):
 def genBargraph(outputDir, dataSet, listOfStats):
     
     # iterate through each test set
-    for testSet, results in dataSet.items():
+    for testSet, _type in dataSet.items():
         
         _dir = os.path.join(outputDir, testSet)
 
         # ensure our directory is good
         if os.path.isdir(_dir) == False:
             h.makeDirectory(_dir)
+        
+        # get the results from the type of run
+        for typeName, results in _type.items():
+                # iterate over the list of stats we want to extract
+                for x,y in listOfStats:
+            
+                    outFile = os.path.join(_dir, f'{typeName}_{x}_{y}_bar.png')
 
-        for x,y in listOfStats:
-            outFile = os.path.join(_dir, f'{x}_{y}_bar.png')
+                    plt.title(f'{testSet}: {y}')
+                    plt.ylabel(y)
+                    plt.xlabel(x)
 
-            plt.title(f'{testSet}: {y}')
-            plt.ylabel(y)
-            plt.xlabel(x)
+                    index, x_data, y_data = extractTestResults(results, x, y)
 
-            index, x_data, y_data = extractTestResults(results, x, y)
+                    low = min(y_data)
+                    high = max(y_data)
 
-            low = min(y_data)
-            high = max(y_data)
-
-            plt.ylim([0, math.ceil(high+.5*(high - low))])
-            plt.xticks(index, x_data)
-            plt.bar(index, y_data, align='center', alpha=0.5)
-            plt.savefig(outFile)
-            plt.clf()
+                    plt.ylim([0, math.ceil(high+.5*(high - low))])
+                    plt.xticks(index, x_data)
+                    plt.bar(index, y_data, align='center', alpha=0.5)
+                    plt.savefig(outFile)
+                    plt.clf()
 
 #***********************************************************************************************************************
 #
