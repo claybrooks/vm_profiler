@@ -18,8 +18,6 @@ sudo apt install -y linux-tools-common
 sudo apt install -y linux-tools-generic
 sudo apt install -y linux-tools-$(uname -r)
 
-# install our service
-sudo cp vm_profiler.service /etc/systemd/system
-sudo systemctl enable vm_profiler
-chmod u+x ~/Desktop/git/vm_profiler/runAllTests.bash
-sudo systemctl enable vm_profiler
+git config credential.helper store
+git config --global user.name "Clay Brooks"
+git config --global user.email "clay_brooks@outlook.com"
