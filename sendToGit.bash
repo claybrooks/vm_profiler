@@ -10,7 +10,8 @@ git config --global user.email "clay_brooks@outlook.com"
 
 mkdir -p results
 prior=$PWD
-resultsFolder=$PWD/results
+curDir=$(dirname "$0")
+resultsFolder=$curDir/results
 
 # go to target directory
 cd $1

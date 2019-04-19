@@ -11,11 +11,12 @@ paranoidLevel="$(sudo cat ${paraFile})"
 # set paranoid level for performance counter
 sudo sh -c "echo 1 >${paraFile}"
 
+curDir=$(dirname "$0")
 outputFolder=~/Desktop/vm_results
-sudo ./src/RunTests.py -o $outputFolder -c -r --pmult 2 -t 3 -a
+sudo ./$curDir/src/RunTests.py -o $outputFolder -c -r --pmult 2 -t 3 -a
 
 sudo chown -R $USER $outputFolder
 
 sudo sh -c "echo ${paranoidLevel} >${paraFile}"
 
-./sendToGit.bash $outputFolder
+./$curDir/sendToGit.bash $outputFolder
