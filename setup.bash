@@ -20,5 +20,6 @@ sudo apt install -y linux-tools-$(uname -r)
 
 # install our service
 sudo mv vm_profiler.service /etc/systemd/system
+sudo systemctl enable vm_profiler
 chmod u+x ~/Desktop/git/vm_profiler/runAllTests.bash
 sudo systemctl enable vm_profiler
