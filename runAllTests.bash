@@ -1,12 +1,12 @@
 #!/bin/bash
 
-curDir=$(dirname "$0")
+dir=~/Desktop/git/vm_profiler
 
 # update ourselves
 git pull
 
 # set ourselves up if necessary
-./$curDir/setup.bash
+./$dir/setup.bash
 
 paraFile=/proc/sys/kernel/perf_event_paranoid
 
@@ -17,10 +17,10 @@ paranoidLevel="$(sudo cat ${paraFile})"
 sudo sh -c "echo 1 >${paraFile}"
 
 outputFolder=~/Desktop/vm_results
-sudo ./$curDir/src/RunTests.py -o $outputFolder -c -r --pmult 2 -t 3 -a
+sudo ./$dir/src/RunTests.py -o $outputFolder -c -r --pmult 2 -t 3 -a
 
 sudo chown -R $USER $outputFolder
 
 sudo sh -c "echo ${paranoidLevel} >${paraFile}"
 
-./$curDir/sendToGit.bash $outputFolder
+./$dir/sendToGit.bash $outputFolder

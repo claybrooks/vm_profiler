@@ -10,8 +10,8 @@ git config --global user.email "clay_brooks@outlook.com"
 
 mkdir -p results
 prior=$PWD
-curDir=$(dirname "$0")
-resultsFolder=$curDir/results
+dir=~/Desktop/git/vm_profiler
+resultsFolder=$dir/results
 
 # go to target directory
 cd $1
