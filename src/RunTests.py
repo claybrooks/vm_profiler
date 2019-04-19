@@ -79,13 +79,13 @@ stressorBogoLimit = {
         'hanoi': 500
     },
     _mem: {
-        'memcpy': 10000,
+        'memcpy': 2000,
     },
     _sch: {
-        'pthread': 10000,
+        'pthread': 2500,
     },
     _io: {
-        'aio': 10000,
+        'aio': 35,
     }
 }
 
@@ -178,10 +178,12 @@ def runTests(args):
 
     print(f'Running with parallelism of {args.numParallel}')
 
+    print(f'Single Instance Stress-ng')
     for name in testClasses:
-        print(f'Single Instance Stress-ng')
         runTestClass(args, name, classBuilders[name], stressorSets[name], False)
-        print (f'Multi Instance Stress-ng')
+
+    print (f'Multi Instance Stress-ng')
+    for name in testClasses:
         runTestClass(args, name, classBuilders[name], stressorSets[name], True)
 
 #***********************************************************************************************************************
@@ -402,7 +404,7 @@ if __name__ == "__main__":
     parser.add_argument('-t',
                         dest='timeAllotted',
                         action='store',
-                        type=int,
+                        type=float,
                         default=1,
                         help='Number of seconds allotted for each test.  Default is 1')
 
