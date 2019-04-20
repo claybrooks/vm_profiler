@@ -86,60 +86,64 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
         for testSet in testSets:
             print (f'Graphing {group}:{testSet}')
 
-            # we have multiple relationships we want to show
-            for x,y in listOfStats[group]:
+            types = list(aggregateData[vms[0]][group][testSet].keys())
 
-                dataToGraph = {}
+            for type in types:
 
-                # now, extract vm specific data
-                first = True
-                for vm in vms:
-                    
-                    index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet], x, y)
+                # we have multiple relationships we want to show
+                for x,y in listOfStats[group]:
 
-                    dataToGraph[vm] = y_data
-                    
-                    if first:
-                        dataToGraph[x] = x_data
-                        first = False
+                    dataToGraph = {}
 
-                _columns = [x] + vms
-                df = pd.DataFrame(dataToGraph, columns=_columns)
+                    # now, extract vm specific data
+                    first = True
+                    for vm in vms:
+                        
+                        index, x_data, y_data = extractTestResults(aggregateData[vm][group][type][testSet], x, y)
 
-                pos = index
-                width = .2
+                        dataToGraph[vm] = y_data
+                        
+                        if first:
+                            dataToGraph[x] = x_data
+                            first = False
 
-                fig, ax = plt.subplots(figsize=(20,10))
+                    _columns = [x] + vms
+                    df = pd.DataFrame(dataToGraph, columns=_columns)
 
-                index = 0
-                for vm in vms:
-                    
-                    _list = []
+                    pos = index
+                    width = .2
 
-                    if index == 0:
-                        _list = pos
-                    else:
-                        _list = [p + (width*index) for p in pos]
+                    fig, ax = plt.subplots(figsize=(20,10))
 
-                    plt.bar(_list,
-                        df[vm],
-                        width,
-                        alpha=.5,
-                        color=colors[index],
-                        label=df[vm][index]
-                    )
+                    index = 0
+                    for vm in vms:
+                        
+                        _list = []
 
-                    index += 1
+                        if index == 0:
+                            _list = pos
+                        else:
+                            _list = [p + (width*index) for p in pos]
 
-                saveTo = os.path.join(outputDir, group, testSet)
-                h.makeDirectory(saveTo)
-                saveTo = os.path.join(saveTo, f'{x}_{y}.png')
-                ax.set_ylabel(y)
-                ax.set_xlabel(x)
-                ax.set_title(f'{testSet}: {y}')
-                ax.set_xticks([p + 5* width for p in pos])
-                ax.set_xticklabels(df[x])
-                plt.legend(vms, loc='upper left')
-                plt.savefig(saveTo)
-                plt.clf()
-                plt.close()
+                        plt.bar(_list,
+                            df[vm],
+                            width,
+                            alpha=.5,
+                            color=colors[index],
+                            label=df[vm][index]
+                        )
+
+                        index += 1
+
+                    saveTo = os.path.join(outputDir, group, testSet)
+                    h.makeDirectory(saveTo)
+                    saveTo = os.path.join(saveTo, f'{type}_{x}_{y}.png')
+                    ax.set_ylabel(y)
+                    ax.set_xlabel(x)
+                    ax.set_title(f'{testSet}: {y}')
+                    ax.set_xticks([p + 5* width for p in pos])
+                    ax.set_xticklabels(df[x])
+                    plt.legend(vms, loc='upper left')
+                    plt.savefig(saveTo)
+                    plt.clf()
+                    plt.close()
