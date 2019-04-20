@@ -88,7 +88,7 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
 
             types = list(aggregateData[vms[0]][group][testSet].keys())
 
-            for type in types:
+            for _type in types:
 
                 # we have multiple relationships we want to show
                 for x,y in listOfStats[group]:
@@ -99,7 +99,7 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                     first = True
                     for vm in vms:
                         
-                        index, x_data, y_data = extractTestResults(aggregateData[vm][group][type][testSet], x, y)
+                        index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet][_type], x, y)
 
                         dataToGraph[vm] = y_data
                         
@@ -137,7 +137,7 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
 
                     saveTo = os.path.join(outputDir, group, testSet)
                     h.makeDirectory(saveTo)
-                    saveTo = os.path.join(saveTo, f'{type}_{x}_{y}.png')
+                    saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.png')
                     ax.set_ylabel(y)
                     ax.set_xlabel(x)
                     ax.set_title(f'{testSet}: {y}')
