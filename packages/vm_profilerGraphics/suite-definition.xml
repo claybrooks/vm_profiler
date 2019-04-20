@@ -48,11 +48,11 @@
     <Arguments></Arguments>
     <Description></Description>
   </Execute> -->
-  <Execute>
+  <!-- <Execute>
     <Test>pts/mixbench</Test>
     <Arguments></Arguments>
     <Description></Description>
-  </Execute>
+  </Execute> -->
   <!-- <Execute>
     <Test>pts/hitman</Test>
     <Arguments></Arguments>
