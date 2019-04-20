@@ -11,18 +11,46 @@ import re
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
-def runAndGetOutput(command):
-    p = sp.Popen(command.split(), stdout=sp.PIPE, stderr=sp.PIPE)
-    out, err = p.communicate()
+def runCommand(command):
+    return sp.Popen(command.split(), stdout=sp.PIPE, stderr=sp.PIPE)
 
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def getOutput(p):
+    out, err = p.communicate()
     return [out.decode('utf-8').split('\n'), err.decode('utf-8').split('\n')]
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def runAndGetOutput(command):
+    p = runCommand(command)
+    return getOutput(p)
+       
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def getOutputs(listOfPs, index=1):
+    data = []
+
+    for p in listOfPs:
+        data.append(getOutput(p)[index])
+
+    return data
+
+#***********************************************************************************************************************
+#
+#***********************************************************************************************************************
+def saveResults(fileName, data):
+    h.outputToFile(fileName, '\n'.join(data))
 
 #***********************************************************************************************************************
 #
 #***********************************************************************************************************************
 def RunAndSaveResults(fileName, toRun, useIndex=0):
     output = runAndGetOutput(toRun)[useIndex]
-    h.outputToFile(fileName, '\n'.join(output))
+    saveResults(fileName, output)
 
 #***********************************************************************************************************************
 #
@@ -68,6 +96,9 @@ def parseOutput(fullPathToFile):
         with open(fullPathToFile, 'r') as f:
             # iterate over each line
             for line in f:
+                # ignore this
+                if 'defaulting to a' in line:
+                    continue
                 # wait for proper stressor line
                 if onStressor == True:
                     bogoLineStarts -= 1
@@ -80,15 +111,15 @@ def parseOutput(fullPathToFile):
 
                         # fill in data
                         index = 1
-                        data['Bogo']            = list_of_data[index]
+                        data['Bogo']            = float(list_of_data[index])
                         index += 1
-                        data['Real Time (s)']   = list_of_data[index]
+                        data['Real Time (s)']   = float(list_of_data[index])
                         index += 1
-                        data['User Time (s)']   = list_of_data[index]
+                        data['User Time (s)']   = float(list_of_data[index])
                         index += 1
-                        data['Sys Time (s)']    = list_of_data[index]
+                        data['Sys Time (s)']    = float(list_of_data[index])
                         index += 1
-                        data['Throughput']      = list_of_data[index]
+                        data['Throughput']      = float(list_of_data[index])
                         index += 1
                         #data['bogo_ops_s_total'] = list_of_data[5].rstrip('\n')
 
@@ -105,7 +136,7 @@ def parseOutput(fullPathToFile):
                         continue     
 
                     line = line.split(']')[1]
-                    line = re.sub(' +', ' ', line).lstrip(' ').rstrip(' ').split(' ')
+                    line = re.sub(' +', ' ', line).lstrip(' ').rstrip(' ').replace(',','').split(' ')
 
                     num = line[0]
                     rateStart = 1
@@ -115,17 +146,17 @@ def parseOutput(fullPathToFile):
                             break
                     
                     name = ' '.join(line[1:rateStart])
-                    rate = ''.join(line[rateStart:-1])
+                    rate = line[rateStart]
 
-                    data[name] = num
-                    data[name+" Rate"] = rate
+                    data[name] = float(num)
+                    data[name+" Rate"] = float(rate)
                 else:  
                     # count hogs
                     if hogs in line:
-                        data['Parallelism'] = h.getStringBetween(line, hogs, ' ')
+                        data['Parallelism'] = float(h.getStringBetween(line, hogs, ' '))
                     # count time
                     elif time in line:
-                        data['time'] = h.getStringBetween(line, time, 's')
+                        data['time'] = float(h.getStringBetween(line, time, 's'))
                     elif stressor in line:
                         onStressor = True
                     elif onStressor == False and stressorDone == True:

@@ -17,8 +17,8 @@ def extractTestResults(results, x, y):
 
     iter = 0
     for _, data in results.items():
-        x_data[iter] = int(float(data[x].replace(',','')))
-        y_data[iter] = int(float(data[y].replace(',','')))
+        x_data[iter] = data[x]
+        y_data[iter] = data[y]
         iter += 1
 
     x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
@@ -31,31 +31,35 @@ def extractTestResults(results, x, y):
 def genBargraph(outputDir, dataSet, listOfStats):
     
     # iterate through each test set
-    for testSet, results in dataSet.items():
+    for testSet, _type in dataSet.items():
         
         _dir = os.path.join(outputDir, testSet)
 
         # ensure our directory is good
         if os.path.isdir(_dir) == False:
             h.makeDirectory(_dir)
+        
+        # get the results from the type of run
+        for typeName, results in _type.items():
+                # iterate over the list of stats we want to extract
+                for x,y in listOfStats:
+            
+                    outFile = os.path.join(_dir, f'{typeName}_{x}_{y}_bar.png')
 
-        for x,y in listOfStats:
-            outFile = os.path.join(_dir, f'{x}_{y}_bar.png')
+                    plt.title(f'{testSet}: {y}')
+                    plt.ylabel(y)
+                    plt.xlabel(x)
 
-            plt.title(f'{testSet}: {y}')
-            plt.ylabel(y)
-            plt.xlabel(x)
+                    index, x_data, y_data = extractTestResults(results, x, y)
 
-            index, x_data, y_data = extractTestResults(results, x, y)
+                    low = min(y_data)
+                    high = max(y_data)
 
-            low = min(y_data)
-            high = max(y_data)
-
-            plt.ylim([0, math.ceil(high+.5*(high - low))])
-            plt.xticks(index, x_data)
-            plt.bar(index, y_data, align='center', alpha=0.5)
-            plt.savefig(outFile)
-            plt.clf()
+                    plt.ylim([0, math.ceil(high+.5*(high - low))])
+                    plt.xticks(index, x_data)
+                    plt.bar(index, y_data, align='center', alpha=0.5)
+                    plt.savefig(outFile)
+                    plt.clf()
 
 #***********************************************************************************************************************
 #
@@ -82,60 +86,64 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
         for testSet in testSets:
             print (f'Graphing {group}:{testSet}')
 
-            # we have multiple relationships we want to show
-            for x,y in listOfStats[group]:
+            types = list(aggregateData[vms[0]][group][testSet].keys())
 
-                dataToGraph = {}
+            for _type in types:
 
-                # now, extract vm specific data
-                first = True
-                for vm in vms:
-                    
-                    index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet], x, y)
+                # we have multiple relationships we want to show
+                for x,y in listOfStats[group]:
 
-                    dataToGraph[vm] = y_data
-                    
-                    if first:
-                        dataToGraph[x] = x_data
-                        first = False
+                    dataToGraph = {}
 
-                _columns = [x] + vms
-                df = pd.DataFrame(dataToGraph, columns=_columns)
+                    # now, extract vm specific data
+                    first = True
+                    for vm in vms:
+                        
+                        index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet][_type], x, y)
 
-                pos = index
-                width = .2
+                        dataToGraph[vm] = y_data
+                        
+                        if first:
+                            dataToGraph[x] = x_data
+                            first = False
 
-                fig, ax = plt.subplots(figsize=(20,10))
+                    _columns = [x] + vms
+                    df = pd.DataFrame(dataToGraph, columns=_columns)
 
-                index = 0
-                for vm in vms:
-                    
-                    _list = []
+                    pos = index
+                    width = .2
 
-                    if index == 0:
-                        _list = pos
-                    else:
-                        _list = [p + (width*index) for p in pos]
+                    fig, ax = plt.subplots(figsize=(20,10))
 
-                    plt.bar(_list,
-                        df[vm],
-                        width,
-                        alpha=.5,
-                        color=colors[index],
-                        label=df[vm][index]
-                    )
+                    index = 0
+                    for vm in vms:
+                        
+                        _list = []
 
-                    index += 1
+                        if index == 0:
+                            _list = pos
+                        else:
+                            _list = [p + (width*index) for p in pos]
 
-                saveTo = os.path.join(outputDir, group, testSet)
-                h.makeDirectory(saveTo)
-                saveTo = os.path.join(saveTo, f'{x}_{y}.png')
-                ax.set_ylabel(y)
-                ax.set_xlabel(x)
-                ax.set_title(f'{testSet}: {y}')
-                ax.set_xticks([p + 5* width for p in pos])
-                ax.set_xticklabels(df[x])
-                plt.legend(vms, loc='upper left')
-                plt.savefig(saveTo)
-                plt.clf()
-                plt.close()
+                        plt.bar(_list,
+                            df[vm],
+                            width,
+                            alpha=.5,
+                            color=colors[index],
+                            label=df[vm][index]
+                        )
+
+                        index += 1
+
+                    saveTo = os.path.join(outputDir, group, testSet)
+                    h.makeDirectory(saveTo)
+                    saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.png')
+                    ax.set_ylabel(y)
+                    ax.set_xlabel(x)
+                    ax.set_title(f'{testSet}: {y}')
+                    ax.set_xticks([p + 5* width for p in pos])
+                    ax.set_xticklabels(df[x])
+                    plt.legend(vms, loc='upper left')
+                    plt.savefig(saveTo)
+                    plt.clf()
+                    plt.close()
