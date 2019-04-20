@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# list tests
-#phoronix-test-suite list-recommended-tests
-#phoronix-test-suite list-available-tests
-#phoronix-test-suite list-available-suites
+echo Running Profiler Disk
+sudo phoronix-test-suite batch-run vm_profilerDisk
 
+echo Running Profiler Graphics
+sudo phoronix-test-suite batch-run vm_profilerGraphics
 
-# cpu suite DONT RUN AS SUDO
-phoronix-test-suite batch-benchmark cpu
+echo Running Profiler Memory
+sudo phoronix-test-suite batch-run vm_profilerMemory
 
-# Can run individual tests ~~need to hash pick some out~~
-# phoronix-test-suite batch-benchmark pybench \
-# ramspeed \ 
+echo Running Profiler Processor
+sudo phoronix-test-suite batch-run vm_profilerProcessor
+
+echo Running Profiler System
+sudo phoronix-test-suite batch-run vm_profilerSystem

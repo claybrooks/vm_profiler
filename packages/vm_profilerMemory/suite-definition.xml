@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.2.0m2-->
+<PhoronixTestSuite>
+  <SuiteInformation>
+    <Title>vmProfilerMemory</Title>
+    <Version>1.0.0</Version>
+    <TestType>Memory</TestType>
+    <Description>Collection of different pts and system test profiles for stressing the system software.</Description>
+    <Maintainer>Adam Sittler Clay Brooks</Maintainer>
+  </SuiteInformation>
+  <Execute>
+    <Test>pts/build-linux-kernel</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/ramspeed</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/t-test1</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/tinymembench</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/mbw</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+</PhoronixTestSuite>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.2.0m2-->
+<PhoronixTestSuite>
+  <SuiteInformation>
+    <Title>vmProfilerDisk</Title>
+    <Version>1.0.0</Version>
+    <TestType>Disk</TestType>
+    <Description>Collection of different pts and system test profiles for stressing the system software.</Description>
+    <Maintainer>Adam Sittler Clay Brooks</Maintainer>
+  </SuiteInformation>
+  <Execute>
+    <Test>pts/fio</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/iozone</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/postmark</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/fs-mark</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/blogbench</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>system/fio</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/startup-time</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+  <Execute>
+    <Test>pts/pjdfstest</Test>
+    <Arguments></Arguments>
+    <Description></Description>
+  </Execute>
+</PhoronixTestSuite>
