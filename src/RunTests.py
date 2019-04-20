@@ -30,7 +30,7 @@ testClasses = [
 #***********************************************************************************************************************
 def simpleCommandBuilder(p, t, _class, stressor, separateInstances):
     if separateInstances:
-        return f'stress-ng --{stressor} {p} --{stressor}-ops {stressorBogoLimit[_class][stressor]} --metrics-brief --perf --times'
+        return f'stress-ng --{stressor} 1 --{stressor}-ops {stressorBogoLimit[_class][stressor]} --metrics-brief --perf --times'
     else:
         return f'stress-ng --{stressor} {p} -t {t}s --metrics-brief --perf --times'
 
