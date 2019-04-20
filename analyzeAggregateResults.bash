@@ -8,7 +8,9 @@ mkdir -p results
 prior=$PWD
 resultsFolder=~/Desktop/git/vm_profiler/results/
 
-zip -r -FS aggregateData.zip ~/Desktop/vm_results/aggregateData/*
+cd ~/Desktop/vm_results/aggregateData
+zip -r -FS ~/Desktop/git/vm_profiler/aggregateData.zip *
+cd $prior
 
 git add aggregateData.zip
 git commit -m "Adding aggregate results"
