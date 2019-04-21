@@ -16,13 +16,11 @@ import zipfile
 _cpu = 'cpu'
 _mem = 'memory'
 _sch = 'scheduler'
-_io  = 'io'
 
 testClasses = [
     _cpu, 
     _mem,
     _sch,
-    _io,
 ]
 
 #***********************************************************************************************************************
@@ -47,12 +45,12 @@ classBuilders = {
     _cpu: cpuCommandBuilder, 
     _mem: simpleCommandBuilder,
     _sch: simpleCommandBuilder,
-    _io:  simpleCommandBuilder,
 }
 
 stressorSets = {
     _cpu: [
         'hanoi', 
+        'atomic',
         #'dither', 
         #'euler', 
         #'pi', 
@@ -66,26 +64,18 @@ stressorSets = {
     ],
     _sch: [
         'pthread'
-    ],
-    _io:[
-        #'hdd',
-        'aio',
-        #'rawdev',
     ]
 }
 
 stressorBogoLimit = {
     _cpu: {
-        'hanoi': 500
+        'hanoi': 250
     },
     _mem: {
-        'memcpy': 2000,
+        'memcpy': 1000,
     },
     _sch: {
-        'pthread': 2500,
-    },
-    _io: {
-        'aio': 35,
+        'pthread': 1750,
     }
 }
 
@@ -93,7 +83,6 @@ classGraphGen = {
     _cpu: graph.genBargraph,
     _mem: graph.genBargraph,
     _sch: graph.genBargraph,
-    _io:  graph.genBargraph,
 }
 
 commonSets = [
@@ -153,7 +142,6 @@ classGraphDataSets = {
     _cpu: commonSets,
     _mem: commonSets,
     _sch: commonSets,
-    _io:  commonSets,
 }
 
 testResults = 'testResults'
