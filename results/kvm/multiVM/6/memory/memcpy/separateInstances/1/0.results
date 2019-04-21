@@ -1,0 +1,60 @@
+stress-ng: info:  [2912] defaulting to a 86400 second (1 day, 0.00 secs) run per stressor
+stress-ng: info:  [2912] dispatching hogs: 1 memcpy
+stress-ng: info:  [2912] successful run completed in 5.23s
+stress-ng: info:  [2912] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
+stress-ng: info:  [2912]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: info:  [2912] memcpy             1000      5.23      2.00      0.03       191.33       492.61
+stress-ng: info:  [2912] memcpy:
+stress-ng: info:  [2912]              2,041,435,221 CPU Clock                       0.39 B/sec
+stress-ng: info:  [2912]              2,043,917,820 Task Clock                      0.39 B/sec
+stress-ng: info:  [2912]                        547 Page Faults Total             104.62 /sec 
+stress-ng: info:  [2912]                        547 Page Faults Minor             104.62 /sec 
+stress-ng: info:  [2912]                          0 Page Faults Major               0.00 /sec 
+stress-ng: info:  [2912]                        893 Context Switches              170.80 /sec 
+stress-ng: info:  [2912]                          0 CPU Migrations                  0.00 /sec 
+stress-ng: info:  [2912]                          0 Alignment Faults                0.00 /sec 
+stress-ng: info:  [2912]                          0 Emulation Faults                0.00 /sec 
+stress-ng: info:  [2912]                        547 Page Faults User              104.62 /sec 
+stress-ng: info:  [2912]                          0 Page Faults Kernel              0.00 /sec 
+stress-ng: info:  [2912]                         84 System Call Enter              16.07 /sec 
+stress-ng: info:  [2912]                         83 System Call Exit               15.87 /sec 
+stress-ng: info:  [2912]                          0 TLB Flushes                     0.00 /sec 
+stress-ng: info:  [2912]                          0 Kmalloc                         0.00 /sec 
+stress-ng: info:  [2912]                          0 Kmalloc Node                    0.00 /sec 
+stress-ng: info:  [2912]                        389 Kfree                          74.40 /sec 
+stress-ng: info:  [2912]                         12 Kmem Cache Alloc                2.30 /sec 
+stress-ng: info:  [2912]                          0 Kmem Cache Alloc Node           0.00 /sec 
+stress-ng: info:  [2912]                      2,462 Kmem Cache Free               470.88 /sec 
+stress-ng: info:  [2912]                        514 MM Page Alloc                  98.31 /sec 
+stress-ng: info:  [2912]                        929 MM Page Free                  177.68 /sec 
+stress-ng: info:  [2912]                      3,940 RCU Utilization               753.56 /sec 
+stress-ng: info:  [2912]                          0 Sched Migrate Task              0.00 /sec 
+stress-ng: info:  [2912]                          0 Sched Move NUMA                 0.00 /sec 
+stress-ng: info:  [2912]                      1,093 Sched Wakeup                  209.05 /sec 
+stress-ng: info:  [2912]                          0 Sched Proc Exec                 0.00 /sec 
+stress-ng: info:  [2912]                          0 Sched Proc Exit                 0.00 /sec 
+stress-ng: info:  [2912]                          0 Sched Proc Fork                 0.00 /sec 
+stress-ng: info:  [2912]                         14 Sched Proc Free                 2.68 /sec 
+stress-ng: info:  [2912]                          0 Sched Proc Hang                 0.00 /sec 
+stress-ng: info:  [2912]                          0 Sched Proc Wait                 0.00 /sec 
+stress-ng: info:  [2912]                        893 Sched Switch                  170.80 /sec 
+stress-ng: info:  [2912]                          1 Signal Generate                 0.19 /sec 
+stress-ng: info:  [2912]                          0 Signal Deliver                  0.00 /sec 
+stress-ng: info:  [2912]                        329 IRQ Entry                      62.92 /sec 
+stress-ng: info:  [2912]                        329 IRQ Exit                       62.92 /sec 
+stress-ng: info:  [2912]                      1,083 Soft IRQ Entry                207.13 /sec 
+stress-ng: info:  [2912]                      1,083 Soft IRQ Exit                 207.13 /sec 
+stress-ng: info:  [2912]                          0 Writeback Dirty Inode           0.00 /sec 
+stress-ng: info:  [2912]                          0 Writeback Dirty Page            0.00 /sec 
+stress-ng: info:  [2912]                          0 Migrate MM Pages                0.00 /sec 
+stress-ng: info:  [2912]                          5 SKB Consume                     0.96 /sec 
+stress-ng: info:  [2912]                          3 SKB Kfree                       0.57 /sec 
+stress-ng: info:  [2912]                          0 IOMMU IO Page Fault             0.00 /sec 
+stress-ng: info:  [2912]                          0 IOMMU Map                       0.00 /sec 
+stress-ng: info:  [2912]                          0 IOMMU Unmap                     0.00 /sec 
+stress-ng: info:  [2912] for a 5.23s run time:
+stress-ng: info:  [2912]       5.23s available CPU time
+stress-ng: info:  [2912]       2.00s user time   ( 38.25%)
+stress-ng: info:  [2912]       0.03s system time (  0.57%)
+stress-ng: info:  [2912]       2.03s total time  ( 38.83%)
+stress-ng: info:  [2912] load average: 4.10 0.89 0.29
