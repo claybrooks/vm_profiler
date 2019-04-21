@@ -177,9 +177,7 @@ def runTestClass(args, name, commandBuilder, stressorSet, separateInstances):
                 ng.RunAndSaveResults(fileName, command, 1)
             # running as multiple
             else:
-                processes = [
-                if args.multiVM:
-                    testSetDir = os.path.join(testSetDir, 'multiVM')]
+                processes = []
 
                 # spawn the appropriate number of processes
                 for _ in range(0, i):
