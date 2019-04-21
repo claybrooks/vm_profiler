@@ -407,10 +407,12 @@ def validateArgs(args):
         if os.path.isdir(args.outputDir) == False:
             h.makeDirectory(args.outputDir)
 
-        testResultsDir = os.path.join(args.outputDir, testResults)
 
-        if args.multiVM:
-            testResultsDir = os.path.join(testResultsDir, 'multiVM', f'{args.multiVM}')
+        if args.multiVM != '':
+            testResultsDir = os.path.join(args.outputDir, 'multiVM', f'{args.multiVM}')
+        else:
+            testResultsDir = os.path.join(args.outputDir, testResults)
+
 
         h.makeDirectory(testResultsDir)
 
