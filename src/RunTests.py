@@ -97,10 +97,56 @@ classGraphGen = {
 }
 
 commonSets = [
-    ('Parallelism',     'Throughput'),
-    ('Parallelism',     'Page Faults User'),
-    ('Parallelism',     'System Call Enter'),
-    ('Parallelism',     'time')
+    ('Parallelism', 'Throughput'),
+    ('Parallelism', 'time'),
+    
+    ('Parallelism', 'CPU Clock'),
+    ('Parallelism', 'Task Clock'),
+    ('Parallelism', 'Page Faults Total'),
+    ('Parallelism', 'Page Faults Minor'),
+    ('Parallelism', 'Page Faults Major'),
+    ('Parallelism', 'Context Switches'),
+    ('Parallelism', 'CPU Migrations'),
+    ('Parallelism', 'Alignment Faults'),
+    ('Parallelism', 'Emulation Faults'),
+    ('Parallelism', 'Page Faults User'),
+    ('Parallelism', 'Page Faults Kernel'),
+    ('Parallelism', 'System Call Enter'),
+    ('Parallelism', 'System Call Exit'),
+    ('Parallelism', 'TLB Flushes'),
+    ('Parallelism', 'Kmalloc'),
+    ('Parallelism', 'Kmalloc Node'),
+    ('Parallelism', 'Kfree'),
+    ('Parallelism', 'Kmem Cache Alloc'),
+    ('Parallelism', 'Kmem Cache Alloc Node'), 
+    ('Parallelism', 'Kmem Cache Free'),
+    ('Parallelism', 'MM Page Alloc'),
+    ('Parallelism', 'MM Page Free'),
+    ('Parallelism', 'RCU Utilization'),
+    ('Parallelism', 'Sched Migrate Task'),
+    ('Parallelism', 'Sched Move NUMA'),
+    ('Parallelism', 'Sched Wakeup'),
+    ('Parallelism', 'Sched Proc Exec'),
+    ('Parallelism', 'Sched Proc Exit'),
+    ('Parallelism', 'Sched Proc Fork'),
+    ('Parallelism', 'Sched Proc Free'),
+    ('Parallelism', 'Sched Proc Hang'),
+    ('Parallelism', 'Sched Proc Wait'),
+    ('Parallelism', 'Sched Switch'),
+    ('Parallelism', 'Signal Generate'),
+    ('Parallelism', 'Signal Deliver'),
+    ('Parallelism', 'IRQ Entry'),
+    ('Parallelism', 'IRQ Exit'),
+    ('Parallelism', 'Soft IRQ Entry'),
+    ('Parallelism', 'Soft IRQ Exit'),
+    ('Parallelism', 'Writeback Dirty Inode'), 
+    ('Parallelism', 'Writeback Dirty Page'),
+    ('Parallelism', 'Migrate MM Pages'),
+    ('Parallelism', 'SKB Consume'),
+    ('Parallelism', 'SKB Kfree'),
+    ('Parallelism', 'IOMMU IO Page Fault'),
+    ('Parallelism', 'IOMMU Map'), 
+    ('Parallelism', 'IOMMU Unmap'),
 ]
 
 classGraphDataSets = {
@@ -225,6 +271,7 @@ def runAggregateAnalysis(args):
 
     graph.genAggregateBargraph(analyzedAggregateData, agData, classGraphDataSets)
 
+    print ("cleaning temp")
     h.cleanFolder(tempExtractionDir)
     os.rmdir(tempExtractionDir)
 

@@ -4,6 +4,7 @@ outputFolder=~/Desktop/vm_results
 
 sudo ./src/RunTests.py -o $outputFolder -a --vm --vmresults results -c
 
+rm -rf ~/Desktop/vm_results/aggregateData/temp
 mkdir -p results
 prior=$PWD
 resultsFolder=~/Desktop/git/vm_profiler/results/
