@@ -28,7 +28,7 @@ vm_wait() {
 }
 
 vm_clean_repo() {
-    ssh -t clay-kvm@kvm-$1 "cd ~/Desktop/git/vm_profiler; sudo git merge --abort; sudo git reset --hard origin/master; sudo git pull" &
+    ssh -t clay-kvm@kvm-$1 "cd ~/Desktop/git/vm_profiler; sudo git merge --abort; sudo git stash; sudo git reset --hard origin/master; sudo git stash drop; sudo git pull" &
 }
 
 vm_run_test() {
@@ -58,7 +58,7 @@ run () {
     done
 
     sleep 10s
-    
+
     for i in `seq 1 $1`;
     do
         vm_clean_repo $i
@@ -74,7 +74,7 @@ run () {
     for i in `seq 1 $1`;
     do
         vm_push_results $i
-        sleep 1 s
+        sleep 1s
         vm_shutdown $i
     done
 }
