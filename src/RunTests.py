@@ -49,8 +49,7 @@ classBuilders = {
 
 stressorSets = {
     _cpu: [
-        'hanoi', 
-        'atomic',
+        'hanoi',
         #'dither', 
         #'euler', 
         #'pi', 
