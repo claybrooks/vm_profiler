@@ -146,8 +146,6 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                     ax.set_xticks([p + 2 * width for p in pos])
                     ax.set_xticklabels(df[x])
                     plt.legend(vms, loc='upper left')
-                    plt.show()
-                    return
                     plt.savefig(saveTo)
                     plt.clf()
                     plt.close()
