@@ -9,43 +9,24 @@
     <Maintainer>Adam Sittler Clay Brooks</Maintainer>
   </SuiteInformation>
   <Execute>
-    <Test>pts/fio</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>pts/iozone</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
     <Test>pts/postmark</Test>
     <Arguments></Arguments>
     <Description></Description>
   </Execute>
   <Execute>
     <Test>pts/fs-mark</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Arguments>-s 1048576 -n 1000</Arguments>
+    <Description>1000 Files, 1MB Size</Description>
   </Execute>
   <Execute>
-    <Test>pts/blogbench</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Test>pts/unpack-linux</Test>
   </Execute>
   <Execute>
-    <Test>system/fio</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Test>pts/aio-stress</Test>
+    <Arguments>-o 2</Arguments>
+    <Description>Random Write</Description>
   </Execute>
   <Execute>
-    <Test>pts/startup-time</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>pts/pjdfstest</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Test>pts/compress-gzip</Test>
   </Execute>
 </PhoronixTestSuite>

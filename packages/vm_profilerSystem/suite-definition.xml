@@ -9,32 +9,7 @@
     <Maintainer>Adam Sittler Clay Brooks</Maintainer>
   </SuiteInformation>
   <Execute>
-    <Test>pts/pgbench</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
     <Test>pts/pybench</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <!-- <Execute>
-    <Test>pts/caffe</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute> -->
-  <Execute>
-    <Test>pts/hint</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>pts/systemd-boot-total</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>pts/stress-ng</Test>
     <Arguments></Arguments>
     <Description></Description>
   </Execute>
@@ -45,16 +20,6 @@
   </Execute>
   <Execute>
     <Test>pts/mcperf</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>system/darktable</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>system/gimp</Test>
     <Arguments></Arguments>
     <Description></Description>
   </Execute>

@@ -45,17 +45,37 @@
   </Execute>
   <Execute>
     <Test>pts/scimark2</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Arguments>TEST_COMPOSITE</Arguments>
+    <Description>Composite</Description>
   </Execute>
   <Execute>
     <Test>pts/graphics-magick</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Arguments>-colorspace HWB</Arguments>
+    <Description>Operation: HWB Color Space</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/graphics-magick</Test>
+    <Arguments>-lat 10x10-5%</Arguments>
+    <Description>Operation: Local Adaptive Thresholding</Description>
   </Execute>
   <Execute>
     <Test>pts/npb</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Arguments>ep.B</Arguments>
+    <Description>Test / Class: EP.B</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/npb</Test>
+    <Arguments>is.C</Arguments>
+    <Description>Test / Class: IS.C</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/npb</Test>
+    <Arguments>lu.A</Arguments>
+    <Description>Test / Class: LU.A</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/npb</Test>
+    <Arguments>ua.A</Arguments>
+    <Description>Test / Class: UA.A</Description>
   </Execute>
 </PhoronixTestSuite>

@@ -9,14 +9,24 @@
     <Maintainer>Adam Sittler Clay Brooks</Maintainer>
   </SuiteInformation>
   <Execute>
-    <Test>pts/build-linux-kernel</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Test>pts/ramspeed</Test>
+    <Arguments>ADD -b 3</Arguments>
+    <Description>Integer Add</Description>
   </Execute>
   <Execute>
     <Test>pts/ramspeed</Test>
-    <Arguments></Arguments>
-    <Description></Description>
+    <Arguments>COPY -b 3</Arguments>
+    <Description>Integer Copy</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/ramspeed</Test>
+    <Arguments>SCALE -b 3</Arguments>
+    <Description>Integer Scale</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/ramspeed</Test>
+    <Arguments>ADD -b 6</Arguments>
+    <Description>Floating-Point Add</Description>
   </Execute>
   <Execute>
     <Test>pts/t-test1</Test>
@@ -25,11 +35,6 @@
   </Execute>
   <Execute>
     <Test>pts/tinymembench</Test>
-    <Arguments></Arguments>
-    <Description></Description>
-  </Execute>
-  <Execute>
-    <Test>pts/mbw</Test>
     <Arguments></Arguments>
     <Description></Description>
   </Execute>
