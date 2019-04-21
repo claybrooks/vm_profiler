@@ -69,7 +69,8 @@ stressorSets = {
 
 stressorBogoLimit = {
     _cpu: {
-        'hanoi': 250
+        'hanoi': 250,
+        'atomic': 30,
     },
     _mem: {
         'memcpy': 1000,
@@ -407,7 +408,6 @@ def validateArgs(args):
         if os.path.isdir(args.outputDir) == False:
             h.makeDirectory(args.outputDir)
 
-
         if args.multiVM != '':
             testResultsDir = os.path.join(args.outputDir, 'multiVM', f'{args.multiVM}')
         else:
@@ -496,6 +496,7 @@ if __name__ == "__main__":
     parser.add_argument('--multiVM',
                         dest='multiVM',
                         action='store',
+                        default='',
                         help='If this flag is provided, test will assume it\'s running in a multi vm environment')
 
     parser.add_argument('-r',
