@@ -503,7 +503,7 @@ if __name__ == "__main__":
                         help='store the name of this vm')
 
     parser.add_argument('--vmNumber',
-                        dest='vmName',
+                        dest='vmNumber',
                         action='store',
                         help='store the number of this vm')
 
