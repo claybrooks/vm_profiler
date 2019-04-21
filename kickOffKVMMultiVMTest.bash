@@ -32,7 +32,7 @@ vm_clean_repo() {
 }
 
 vm_run_test() {
-    ssh -t -X clay-kvm@kvm-$1 "cd ~/Desktop/git/vm_profiler; sudo git pull; ./runMultiVMTests.bash kvm" &
+    ssh -t -X clay-kvm@kvm-$1 "cd ~/Desktop/git/vm_profiler; sudo git pull; ./runMultiVMTests.bash kvm $1 $2" &
 }
 
 vm_push_results() {
@@ -66,7 +66,7 @@ run () {
 
     for i in `seq 1 $1`;
     do
-        vm_run_test $i
+        vm_run_test $i $1
     done
 
     wait

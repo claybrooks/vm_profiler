@@ -408,7 +408,7 @@ def validateArgs(args):
             h.makeDirectory(args.outputDir)
 
         if args.multiVM:
-            testResultsDir = os.path.join(args.outputDir, 'multiVM', args.vmName, args.vmNumber)
+            testResultsDir = os.path.join(args.outputDir, 'multiVM', args.vmName, args.numVms, args.vmNumber)
         else:
             testResultsDir = os.path.join(args.outputDir, testResults)
 
@@ -506,6 +506,11 @@ if __name__ == "__main__":
                         dest='vmNumber',
                         action='store',
                         help='store the number of this vm')
+
+    parser.add_argument('--numVms',
+                        dest='numVms',
+                        action='store',
+                        help='store the amount of vms in this run')
 
     parser.add_argument('-r',
                         dest='runTests',
