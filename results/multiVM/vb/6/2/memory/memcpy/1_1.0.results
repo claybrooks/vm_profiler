@@ -1,59 +1,59 @@
-stress-ng: info:  [1980] dispatching hogs: 1 memcpy
-stress-ng: info:  [1980] successful run completed in 1.01s
-stress-ng: info:  [1980] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
-stress-ng: info:  [1980]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
-stress-ng: info:  [1980] memcpy              304      1.01      0.98      0.00       301.64       310.20
-stress-ng: info:  [1980] memcpy:
-stress-ng: info:  [1980]                986,298,012 CPU Clock                       0.98 B/sec
-stress-ng: info:  [1980]                986,408,525 Task Clock                      0.98 B/sec
-stress-ng: info:  [1980]                        549 Page Faults Total             544.34 /sec 
-stress-ng: info:  [1980]                        549 Page Faults Minor             544.34 /sec 
-stress-ng: info:  [1980]                          0 Page Faults Major               0.00 /sec 
-stress-ng: info:  [1980]                         71 Context Switches               70.40 /sec 
-stress-ng: info:  [1980]                          0 CPU Migrations                  0.00 /sec 
-stress-ng: info:  [1980]                          0 Alignment Faults                0.00 /sec 
-stress-ng: info:  [1980]                          0 Emulation Faults                0.00 /sec 
-stress-ng: info:  [1980]                        548 Page Faults User              543.35 /sec 
-stress-ng: info:  [1980]                          1 Page Faults Kernel              0.99 /sec 
-stress-ng: info:  [1980]                         85 System Call Enter              84.28 /sec 
-stress-ng: info:  [1980]                         84 System Call Exit               83.29 /sec 
-stress-ng: info:  [1980]                          0 TLB Flushes                     0.00 /sec 
-stress-ng: info:  [1980]                          1 Kmalloc                         0.99 /sec 
-stress-ng: info:  [1980]                          2 Kmalloc Node                    1.98 /sec 
-stress-ng: info:  [1980]                         12 Kfree                          11.90 /sec 
-stress-ng: info:  [1980]                          9 Kmem Cache Alloc                8.92 /sec 
-stress-ng: info:  [1980]                          2 Kmem Cache Alloc Node           1.98 /sec 
-stress-ng: info:  [1980]                         29 Kmem Cache Free                28.75 /sec 
-stress-ng: info:  [1980]                        514 MM Page Alloc                 509.64 /sec 
-stress-ng: info:  [1980]                          1 MM Page Free                    0.99 /sec 
-stress-ng: info:  [1980]                        410 RCU Utilization               406.52 /sec 
-stress-ng: info:  [1980]                          0 Sched Migrate Task              0.00 /sec 
-stress-ng: info:  [1980]                          0 Sched Move NUMA                 0.00 /sec 
-stress-ng: info:  [1980]                        102 Sched Wakeup                  101.13 /sec 
-stress-ng: info:  [1980]                          0 Sched Proc Exec                 0.00 /sec 
-stress-ng: info:  [1980]                          0 Sched Proc Exit                 0.00 /sec 
-stress-ng: info:  [1980]                          0 Sched Proc Fork                 0.00 /sec 
-stress-ng: info:  [1980]                          1 Sched Proc Free                 0.99 /sec 
-stress-ng: info:  [1980]                          0 Sched Proc Hang                 0.00 /sec 
-stress-ng: info:  [1980]                          0 Sched Proc Wait                 0.00 /sec 
-stress-ng: info:  [1980]                         71 Sched Switch                   70.40 /sec 
-stress-ng: info:  [1980]                          2 Signal Generate                 1.98 /sec 
-stress-ng: info:  [1980]                          1 Signal Deliver                  0.99 /sec 
-stress-ng: info:  [1980]                          8 IRQ Entry                       7.93 /sec 
-stress-ng: info:  [1980]                          8 IRQ Exit                        7.93 /sec 
-stress-ng: info:  [1980]                        138 Soft IRQ Entry                136.83 /sec 
-stress-ng: info:  [1980]                        138 Soft IRQ Exit                 136.83 /sec 
-stress-ng: info:  [1980]                          0 Writeback Dirty Inode           0.00 /sec 
-stress-ng: info:  [1980]                          0 Writeback Dirty Page            0.00 /sec 
-stress-ng: info:  [1980]                          0 Migrate MM Pages                0.00 /sec 
-stress-ng: info:  [1980]                          4 SKB Consume                     3.97 /sec 
-stress-ng: info:  [1980]                          1 SKB Kfree                       0.99 /sec 
-stress-ng: info:  [1980]                          0 IOMMU IO Page Fault             0.00 /sec 
-stress-ng: info:  [1980]                          0 IOMMU Map                       0.00 /sec 
-stress-ng: info:  [1980]                          0 IOMMU Unmap                     0.00 /sec 
-stress-ng: info:  [1980] for a 1.01s run time:
-stress-ng: info:  [1980]       1.01s available CPU time
-stress-ng: info:  [1980]       0.98s user time   ( 97.17%)
-stress-ng: info:  [1980]       0.00s system time (  0.00%)
-stress-ng: info:  [1980]       0.98s total time  ( 97.17%)
-stress-ng: info:  [1980] load average: 2.83 0.72 0.24
+stress-ng: info:  [1904] dispatching hogs: 1 memcpy
+stress-ng: info:  [1904] successful run completed in 1.01s
+stress-ng: info:  [1904] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
+stress-ng: info:  [1904]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: info:  [1904] memcpy              350      1.01      0.98      0.00       345.99       357.14
+stress-ng: info:  [1904] memcpy:
+stress-ng: info:  [1904]                992,870,425 CPU Clock                       0.98 B/sec
+stress-ng: info:  [1904]                992,982,346 Task Clock                      0.98 B/sec
+stress-ng: info:  [1904]                        549 Page Faults Total             542.30 /sec 
+stress-ng: info:  [1904]                        549 Page Faults Minor             542.30 /sec 
+stress-ng: info:  [1904]                          0 Page Faults Major               0.00 /sec 
+stress-ng: info:  [1904]                         76 Context Switches               75.07 /sec 
+stress-ng: info:  [1904]                          0 CPU Migrations                  0.00 /sec 
+stress-ng: info:  [1904]                          0 Alignment Faults                0.00 /sec 
+stress-ng: info:  [1904]                          0 Emulation Faults                0.00 /sec 
+stress-ng: info:  [1904]                        548 Page Faults User              541.32 /sec 
+stress-ng: info:  [1904]                          1 Page Faults Kernel              0.99 /sec 
+stress-ng: info:  [1904]                         85 System Call Enter              83.96 /sec 
+stress-ng: info:  [1904]                         84 System Call Exit               82.98 /sec 
+stress-ng: info:  [1904]                          0 TLB Flushes                     0.00 /sec 
+stress-ng: info:  [1904]                          0 Kmalloc                         0.00 /sec 
+stress-ng: info:  [1904]                          1 Kmalloc Node                    0.99 /sec 
+stress-ng: info:  [1904]                         11 Kfree                          10.87 /sec 
+stress-ng: info:  [1904]                         13 Kmem Cache Alloc               12.84 /sec 
+stress-ng: info:  [1904]                          1 Kmem Cache Alloc Node           0.99 /sec 
+stress-ng: info:  [1904]                        117 Kmem Cache Free               115.57 /sec 
+stress-ng: info:  [1904]                        514 MM Page Alloc                 507.73 /sec 
+stress-ng: info:  [1904]                          1 MM Page Free                    0.99 /sec 
+stress-ng: info:  [1904]                        414 RCU Utilization               408.95 /sec 
+stress-ng: info:  [1904]                          0 Sched Migrate Task              0.00 /sec 
+stress-ng: info:  [1904]                          0 Sched Move NUMA                 0.00 /sec 
+stress-ng: info:  [1904]                        100 Sched Wakeup                   98.78 /sec 
+stress-ng: info:  [1904]                          0 Sched Proc Exec                 0.00 /sec 
+stress-ng: info:  [1904]                          0 Sched Proc Exit                 0.00 /sec 
+stress-ng: info:  [1904]                          0 Sched Proc Fork                 0.00 /sec 
+stress-ng: info:  [1904]                          1 Sched Proc Free                 0.99 /sec 
+stress-ng: info:  [1904]                          0 Sched Proc Hang                 0.00 /sec 
+stress-ng: info:  [1904]                          0 Sched Proc Wait                 0.00 /sec 
+stress-ng: info:  [1904]                         76 Sched Switch                   75.07 /sec 
+stress-ng: info:  [1904]                          2 Signal Generate                 1.98 /sec 
+stress-ng: info:  [1904]                          1 Signal Deliver                  0.99 /sec 
+stress-ng: info:  [1904]                         16 IRQ Entry                      15.80 /sec 
+stress-ng: info:  [1904]                         16 IRQ Exit                       15.80 /sec 
+stress-ng: info:  [1904]                        139 Soft IRQ Entry                137.30 /sec 
+stress-ng: info:  [1904]                        139 Soft IRQ Exit                 137.30 /sec 
+stress-ng: info:  [1904]                          0 Writeback Dirty Inode           0.00 /sec 
+stress-ng: info:  [1904]                          0 Writeback Dirty Page            0.00 /sec 
+stress-ng: info:  [1904]                          0 Migrate MM Pages                0.00 /sec 
+stress-ng: info:  [1904]                          6 SKB Consume                     5.93 /sec 
+stress-ng: info:  [1904]                          1 SKB Kfree                       0.99 /sec 
+stress-ng: info:  [1904]                          0 IOMMU IO Page Fault             0.00 /sec 
+stress-ng: info:  [1904]                          0 IOMMU Map                       0.00 /sec 
+stress-ng: info:  [1904]                          0 IOMMU Unmap                     0.00 /sec 
+stress-ng: info:  [1904] for a 1.01s run time:
+stress-ng: info:  [1904]       1.01s available CPU time
+stress-ng: info:  [1904]       0.98s user time   ( 96.80%)
+stress-ng: info:  [1904]       0.00s system time (  0.00%)
+stress-ng: info:  [1904]       0.98s total time  ( 96.80%)
+stress-ng: info:  [1904] load average: 3.24 0.77 0.26
