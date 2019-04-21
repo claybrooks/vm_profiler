@@ -46,7 +46,8 @@ def genBargraph(outputDir, dataSet, listOfStats):
             
                     outFile = os.path.join(_dir, f'{typeName}_{x}_{y}_bar.png')
 
-                    plt.title(f'{testSet}: {y}')
+                    header = 'Multi-Instance' if _type == 'multiInstance' else 'Single-Instance'
+                    plt.title(f'{header} {testSet}')
                     plt.ylabel(y)
                     plt.xlabel(x)
 
@@ -137,14 +138,16 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
 
                     saveTo = os.path.join(outputDir, group, testSet)
                     h.makeDirectory(saveTo)
-                    saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.jpeg')
+                    saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.png')
                     ax.set_ylabel(y)
                     ax.set_xlabel(x)
-                    ax.set_title(f'{testSet}: {y}')
+                    header = 'Multi-Instance' if _type == 'multiInstance' else 'Single-Instance'
+                    ax.set_title(f'{header} {testSet}')
                     ax.set_xticks([p + 2 * width for p in pos])
-                    #ax.set_xticks(range(len(pos)))
                     ax.set_xticklabels(df[x])
                     plt.legend(vms, loc='upper left')
+                    plt.show()
+                    return
                     plt.savefig(saveTo)
                     plt.clf()
                     plt.close()
