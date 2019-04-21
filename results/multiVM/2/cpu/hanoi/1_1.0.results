@@ -1,0 +1,59 @@
+stress-ng: info:  [14376] dispatching hogs: 1 cpu
+stress-ng: info:  [14376] successful run completed in 1.63s
+stress-ng: info:  [14376] stressor       bogo ops real time  usr time  sys time   bogo ops/s   bogo ops/s
+stress-ng: info:  [14376]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: info:  [14376] cpu                 311      1.63      0.97      0.02       190.78       314.14
+stress-ng: info:  [14376] cpu:
+stress-ng: info:  [14376]                951,221,925 CPU Clock                       0.58 B/sec
+stress-ng: info:  [14376]                951,222,483 Task Clock                      0.58 B/sec
+stress-ng: info:  [14376]                          4 Page Faults Total               2.45 /sec 
+stress-ng: info:  [14376]                          4 Page Faults Minor               2.45 /sec 
+stress-ng: info:  [14376]                          0 Page Faults Major               0.00 /sec 
+stress-ng: info:  [14376]                          1 Context Switches                0.61 /sec 
+stress-ng: info:  [14376]                          0 CPU Migrations                  0.00 /sec 
+stress-ng: info:  [14376]                          0 Alignment Faults                0.00 /sec 
+stress-ng: info:  [14376]                          0 Emulation Faults                0.00 /sec 
+stress-ng: info:  [14376]                          3 Page Faults User                1.84 /sec 
+stress-ng: info:  [14376]                          1 Page Faults Kernel              0.61 /sec 
+stress-ng: info:  [14376]                         85 System Call Enter              52.13 /sec 
+stress-ng: info:  [14376]                         84 System Call Exit               51.52 /sec 
+stress-ng: info:  [14376]                          0 TLB Flushes                     0.00 /sec 
+stress-ng: info:  [14376]                          0 Kmalloc                         0.00 /sec 
+stress-ng: info:  [14376]                          0 Kmalloc Node                    0.00 /sec 
+stress-ng: info:  [14376]                          0 Kfree                           0.00 /sec 
+stress-ng: info:  [14376]                          1 Kmem Cache Alloc                0.61 /sec 
+stress-ng: info:  [14376]                          0 Kmem Cache Alloc Node           0.00 /sec 
+stress-ng: info:  [14376]                          1 Kmem Cache Free                 0.61 /sec 
+stress-ng: info:  [14376]                          0 MM Page Alloc                   0.00 /sec 
+stress-ng: info:  [14376]                          0 MM Page Free                    0.00 /sec 
+stress-ng: info:  [14376]                        484 RCU Utilization               296.83 /sec 
+stress-ng: info:  [14376]                          0 Sched Migrate Task              0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Move NUMA                 0.00 /sec 
+stress-ng: info:  [14376]                          1 Sched Wakeup                    0.61 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Exec                 0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Exit                 0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Fork                 0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Free                 0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Hang                 0.00 /sec 
+stress-ng: info:  [14376]                          0 Sched Proc Wait                 0.00 /sec 
+stress-ng: info:  [14376]                          1 Sched Switch                    0.61 /sec 
+stress-ng: info:  [14376]                          1 Signal Generate                 0.61 /sec 
+stress-ng: info:  [14376]                          1 Signal Deliver                  0.61 /sec 
+stress-ng: info:  [14376]                          0 IRQ Entry                       0.00 /sec 
+stress-ng: info:  [14376]                          0 IRQ Exit                        0.00 /sec 
+stress-ng: info:  [14376]                        243 Soft IRQ Entry                149.03 /sec 
+stress-ng: info:  [14376]                        243 Soft IRQ Exit                 149.03 /sec 
+stress-ng: info:  [14376]                          0 Writeback Dirty Inode           0.00 /sec 
+stress-ng: info:  [14376]                          0 Writeback Dirty Page            0.00 /sec 
+stress-ng: info:  [14376]                          0 Migrate MM Pages                0.00 /sec 
+stress-ng: info:  [14376]                          0 SKB Consume                     0.00 /sec 
+stress-ng: info:  [14376]                          0 SKB Kfree                       0.00 /sec 
+stress-ng: info:  [14376]                          0 IOMMU IO Page Fault             0.00 /sec 
+stress-ng: info:  [14376]                          0 IOMMU Map                       0.00 /sec 
+stress-ng: info:  [14376]                          0 IOMMU Unmap                     0.00 /sec 
+stress-ng: info:  [14376] for a 1.63s run time:
+stress-ng: info:  [14376]      19.57s available CPU time
+stress-ng: info:  [14376]       0.97s user time   (  4.96%)
+stress-ng: info:  [14376]       0.02s system time (  0.10%)
+stress-ng: info:  [14376]       0.99s total time  (  5.06%)
+stress-ng: info:  [14376] load average: 0.00 0.16 0.56
