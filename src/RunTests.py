@@ -407,8 +407,8 @@ def validateArgs(args):
         if os.path.isdir(args.outputDir) == False:
             h.makeDirectory(args.outputDir)
 
-        if args.multiVM != '':
-            testResultsDir = os.path.join(args.outputDir, 'multiVM', f'{args.multiVM}')
+        if args.multiVM:
+            testResultsDir = os.path.join(args.outputDir, 'multiVM', args.vmName)
         else:
             testResultsDir = os.path.join(args.outputDir, testResults)
 
@@ -494,9 +494,13 @@ if __name__ == "__main__":
 
     parser.add_argument('--multiVM',
                         dest='multiVM',
-                        action='store',
-                        default='',
+                        action='store_true',
                         help='If this flag is provided, test will assume it\'s running in a multi vm environment')
+
+    parser.add_argument('--vmName',
+                        dest='vmName',
+                        action='store',
+                        help='store the name of this vm')
 
     parser.add_argument('-r',
                         dest='runTests',
