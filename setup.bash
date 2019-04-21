@@ -18,6 +18,8 @@ sudo apt install -y linux-tools-common
 sudo apt install -y linux-tools-generic
 sudo apt install -y linux-tools-$(uname -r)
 
+sudo apt install -y openssh-server
+
 git config credential.helper store
 git config --global user.name "Clay Brooks"
 git config --global user.email "clay_brooks@outlook.com"

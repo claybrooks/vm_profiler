@@ -162,11 +162,11 @@ def runTestClass(args, name, commandBuilder, stressorSet, separateInstances):
     p = args.numParallel
     t = args.timeAllotted
 
-    testGroupDir = testResultsDir + f'/{name}'
+    testGroupDir = os.path.join(testResultsDir, f'{name}')
     
     for stressor in stressorSet:
         print (f'\tStarting {stressor}')
-        testSetDir = testGroupDir + f'/{stressor}'
+        testSetDir = os.path.join(testGroupDir, f'{stressor}')
 
         for i in range(1,p+1):
             command = commandBuilder(i, t, name, stressor, separateInstances)
@@ -177,7 +177,9 @@ def runTestClass(args, name, commandBuilder, stressorSet, separateInstances):
                 ng.RunAndSaveResults(fileName, command, 1)
             # running as multiple
             else:
-                processes = []
+                processes = [
+                if args.multiVM:
+                    testSetDir = os.path.join(testSetDir, 'multiVM')]
 
                 # spawn the appropriate number of processes
                 for _ in range(0, i):
@@ -408,6 +410,10 @@ def validateArgs(args):
             h.makeDirectory(args.outputDir)
 
         testResultsDir = os.path.join(args.outputDir, testResults)
+
+        if args.multiVM:
+            testResultsDir = os.path.join(testResultsDir, 'multiVM', f'{args.multiVM}')
+
         h.makeDirectory(testResultsDir)
 
         analyzedDataDir = os.path.join(args.outputDir, analyzedResults)
@@ -486,6 +492,11 @@ if __name__ == "__main__":
                         action='store',
                         type=str,
                         help='Location of all vm aggregate results to read from')
+
+    parser.add_argument('--multiVM',
+                        dest='multiVM',
+                        action='store',
+                        help='If this flag is provided, test will assume it\'s running in a multi vm environment')
 
     parser.add_argument('-r',
                         dest='runTests',
