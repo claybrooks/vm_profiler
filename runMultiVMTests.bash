@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # update ourselves
-git pull
+sudo git pull
 
 paraFile=/proc/sys/kernel/perf_event_paranoid
 
