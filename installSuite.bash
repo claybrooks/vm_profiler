@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo Copying Packages
+sudo mkdir -p ~/.phoronix-test-suite/test-suites/local
 sudo cp -r packages/vm_* ~/.phoronix-test-suite/test-suites/local
 
 echo Installing Dependancies
