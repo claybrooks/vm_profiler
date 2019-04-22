@@ -26,3 +26,4 @@ git config --global user.email "clay_brooks@outlook.com"
 
 if [ $1 == "vb" ]; then
     sudo ifconfig enp0s8 192.168.56.$2 netmask 255.255.255.0 up
+fi
