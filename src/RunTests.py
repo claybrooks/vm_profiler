@@ -16,13 +16,11 @@ import zipfile
 _cpu = 'cpu'
 _mem = 'memory'
 _sch = 'scheduler'
-_io  = 'io'
 
 testClasses = [
     _cpu, 
     _mem,
     _sch,
-    _io,
 ]
 
 #***********************************************************************************************************************
@@ -47,12 +45,11 @@ classBuilders = {
     _cpu: cpuCommandBuilder, 
     _mem: simpleCommandBuilder,
     _sch: simpleCommandBuilder,
-    _io:  simpleCommandBuilder,
 }
 
 stressorSets = {
     _cpu: [
-        'hanoi', 
+        'hanoi',
         #'dither', 
         #'euler', 
         #'pi', 
@@ -66,26 +63,19 @@ stressorSets = {
     ],
     _sch: [
         'pthread'
-    ],
-    _io:[
-        #'hdd',
-        'aio',
-        #'rawdev',
     ]
 }
 
 stressorBogoLimit = {
     _cpu: {
-        'hanoi': 500
+        'hanoi': 250,
+        'atomic': 30,
     },
     _mem: {
-        'memcpy': 2000,
+        'memcpy': 1000,
     },
     _sch: {
-        'pthread': 2500,
-    },
-    _io: {
-        'aio': 35,
+        'pthread': 1750,
     }
 }
 
@@ -93,21 +83,65 @@ classGraphGen = {
     _cpu: graph.genBargraph,
     _mem: graph.genBargraph,
     _sch: graph.genBargraph,
-    _io:  graph.genBargraph,
 }
 
 commonSets = [
-    ('Parallelism',     'Throughput'),
-    ('Parallelism',     'Page Faults User'),
-    ('Parallelism',     'System Call Enter'),
-    ('Parallelism',     'time')
+    ('Parallelism', 'Throughput'),
+    ('Parallelism', 'time'),
+    
+    ('Parallelism', 'CPU Clock'),
+    ('Parallelism', 'Task Clock'),
+    ('Parallelism', 'Page Faults Total'),
+    ('Parallelism', 'Page Faults Minor'),
+    ('Parallelism', 'Page Faults Major'),
+    ('Parallelism', 'Context Switches'),
+    ('Parallelism', 'CPU Migrations'),
+    ('Parallelism', 'Alignment Faults'),
+    ('Parallelism', 'Emulation Faults'),
+    ('Parallelism', 'Page Faults User'),
+    ('Parallelism', 'Page Faults Kernel'),
+    ('Parallelism', 'System Call Enter'),
+    ('Parallelism', 'System Call Exit'),
+    ('Parallelism', 'TLB Flushes'),
+    ('Parallelism', 'Kmalloc'),
+    ('Parallelism', 'Kmalloc Node'),
+    ('Parallelism', 'Kfree'),
+    ('Parallelism', 'Kmem Cache Alloc'),
+    ('Parallelism', 'Kmem Cache Alloc Node'), 
+    ('Parallelism', 'Kmem Cache Free'),
+    ('Parallelism', 'MM Page Alloc'),
+    ('Parallelism', 'MM Page Free'),
+    ('Parallelism', 'RCU Utilization'),
+    ('Parallelism', 'Sched Migrate Task'),
+    ('Parallelism', 'Sched Move NUMA'),
+    ('Parallelism', 'Sched Wakeup'),
+    ('Parallelism', 'Sched Proc Exec'),
+    ('Parallelism', 'Sched Proc Exit'),
+    ('Parallelism', 'Sched Proc Fork'),
+    ('Parallelism', 'Sched Proc Free'),
+    ('Parallelism', 'Sched Proc Hang'),
+    ('Parallelism', 'Sched Proc Wait'),
+    ('Parallelism', 'Sched Switch'),
+    ('Parallelism', 'Signal Generate'),
+    ('Parallelism', 'Signal Deliver'),
+    ('Parallelism', 'IRQ Entry'),
+    ('Parallelism', 'IRQ Exit'),
+    ('Parallelism', 'Soft IRQ Entry'),
+    ('Parallelism', 'Soft IRQ Exit'),
+    ('Parallelism', 'Writeback Dirty Inode'), 
+    ('Parallelism', 'Writeback Dirty Page'),
+    ('Parallelism', 'Migrate MM Pages'),
+    ('Parallelism', 'SKB Consume'),
+    ('Parallelism', 'SKB Kfree'),
+    ('Parallelism', 'IOMMU IO Page Fault'),
+    ('Parallelism', 'IOMMU Map'), 
+    ('Parallelism', 'IOMMU Unmap'),
 ]
 
 classGraphDataSets = {
     _cpu: commonSets,
     _mem: commonSets,
     _sch: commonSets,
-    _io:  commonSets,
 }
 
 testResults = 'testResults'
@@ -128,11 +162,11 @@ def runTestClass(args, name, commandBuilder, stressorSet, separateInstances):
     p = args.numParallel
     t = args.timeAllotted
 
-    testGroupDir = testResultsDir + f'/{name}'
+    testGroupDir = os.path.join(testResultsDir, f'{name}')
     
     for stressor in stressorSet:
         print (f'\tStarting {stressor}')
-        testSetDir = testGroupDir + f'/{stressor}'
+        testSetDir = os.path.join(testGroupDir, f'{stressor}')
 
         for i in range(1,p+1):
             command = commandBuilder(i, t, name, stressor, separateInstances)
@@ -225,6 +259,7 @@ def runAggregateAnalysis(args):
 
     graph.genAggregateBargraph(analyzedAggregateData, agData, classGraphDataSets)
 
+    print ("cleaning temp")
     h.cleanFolder(tempExtractionDir)
     os.rmdir(tempExtractionDir)
 
@@ -372,7 +407,12 @@ def validateArgs(args):
         if os.path.isdir(args.outputDir) == False:
             h.makeDirectory(args.outputDir)
 
-        testResultsDir = os.path.join(args.outputDir, testResults)
+        if args.multiVM:
+            testResultsDir = os.path.join(args.outputDir, 'multiVM', args.vmName, args.numVms, args.vmNumber)
+        else:
+            testResultsDir = os.path.join(args.outputDir, testResults)
+
+
         h.makeDirectory(testResultsDir)
 
         analyzedDataDir = os.path.join(args.outputDir, analyzedResults)
@@ -451,6 +491,26 @@ if __name__ == "__main__":
                         action='store',
                         type=str,
                         help='Location of all vm aggregate results to read from')
+
+    parser.add_argument('--multiVM',
+                        dest='multiVM',
+                        action='store_true',
+                        help='If this flag is provided, test will assume it\'s running in a multi vm environment')
+
+    parser.add_argument('--vmName',
+                        dest='vmName',
+                        action='store',
+                        help='store the name of this vm')
+
+    parser.add_argument('--vmNumber',
+                        dest='vmNumber',
+                        action='store',
+                        help='store the number of this vm')
+
+    parser.add_argument('--numVms',
+                        dest='numVms',
+                        action='store',
+                        help='store the amount of vms in this run')
 
     parser.add_argument('-r',
                         dest='runTests',

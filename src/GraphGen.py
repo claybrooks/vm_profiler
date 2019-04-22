@@ -46,7 +46,8 @@ def genBargraph(outputDir, dataSet, listOfStats):
             
                     outFile = os.path.join(_dir, f'{typeName}_{x}_{y}_bar.png')
 
-                    plt.title(f'{testSet}: {y}')
+                    header = 'Multi-Instance' if _type == 'multiInstance' else 'Single-Instance'
+                    plt.title(f'{header} {testSet}')
                     plt.ylabel(y)
                     plt.xlabel(x)
 
@@ -75,7 +76,8 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
     # high level
     rawData = {}
 
-    colors = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#00FFFF', '#FFFF00']
+    #colors = ['firebrick', 'orangered', 'darkorange', 'gold']
+    colors = ['tab:blue', 'tab:red', 'tab:orange', 'tab:green' ]
 
     # iterate over each test group
     for group in testGroups:
@@ -111,9 +113,9 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                     df = pd.DataFrame(dataToGraph, columns=_columns)
 
                     pos = index
-                    width = .2
+                    width = .15
 
-                    fig, ax = plt.subplots(figsize=(20,10))
+                    fig, ax = plt.subplots(figsize=(15, 10))
 
                     index = 0
                     for vm in vms:
@@ -128,7 +130,6 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                         plt.bar(_list,
                             df[vm],
                             width,
-                            alpha=.5,
                             color=colors[index],
                             label=df[vm][index]
                         )
@@ -140,8 +141,9 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                     saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.png')
                     ax.set_ylabel(y)
                     ax.set_xlabel(x)
-                    ax.set_title(f'{testSet}: {y}')
-                    ax.set_xticks([p + 5* width for p in pos])
+                    header = 'Multi-Instance' if _type == 'multiInstance' else 'Single-Instance'
+                    ax.set_title(f'{header} {testSet}')
+                    ax.set_xticks([p + 2 * width for p in pos])
                     ax.set_xticklabels(df[x])
                     plt.legend(vms, loc='upper left')
                     plt.savefig(saveTo)

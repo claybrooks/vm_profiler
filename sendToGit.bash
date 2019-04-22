@@ -4,6 +4,8 @@ if [[ -z "$1" ]] ; then
 	exit
 fi
 
+git pull
+
 git config credential.helper store
 git config --global user.name "Clay Brooks"
 git config --global user.email "clay_brooks@outlook.com"
