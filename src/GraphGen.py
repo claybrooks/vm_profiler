@@ -10,6 +10,8 @@ import os
 import pandas as pd
 
 def extractTestResults(results, x, y):
+    badKeys = False
+
     num_results = len(results.items())
     index   = list(range(0, num_results))
     x_data  = [0] * num_results
@@ -17,9 +19,16 @@ def extractTestResults(results, x, y):
 
     iter = 0
     for _, data in results.items():
-        x_data[iter] = data[x]
+        if x not in data or y not in data:
+            badKeys = True
+            break
+
+        x_data[iter] = (int)(data[x])
         y_data[iter] = data[y]
         iter += 1
+
+    if badKeys:
+        return None, None, None
 
     x_data, y_data = (list(t) for t in zip(*sorted(zip(x_data, y_data))))
 
@@ -46,12 +55,15 @@ def genBargraph(outputDir, dataSet, listOfStats):
             
                     outFile = os.path.join(_dir, f'{typeName}_{x}_{y}_bar.png')
 
-                    header = 'Multi-Instance' if _type == 'multiInstance' else 'Single-Instance'
+                    header = 'Multi-Instance' if typeName == 'multiInstance' else 'Single-Instance'
                     plt.title(f'{header} {testSet}')
                     plt.ylabel(y)
                     plt.xlabel(x)
 
                     index, x_data, y_data = extractTestResults(results, x, y)
+
+                    if index == None and x_data == None and y_data == None:
+                        continue
 
                     low = min(y_data)
                     high = max(y_data)
@@ -97,17 +109,27 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
 
                     dataToGraph = {}
 
+                    broken = False
+
                     # now, extract vm specific data
                     first = True
+                    
                     for vm in vms:
                         
                         index, x_data, y_data = extractTestResults(aggregateData[vm][group][testSet][_type], x, y)
+
+                        if index == None and x_data == None and y_data == None:
+                            broken = True
+                            continue
 
                         dataToGraph[vm] = y_data
                         
                         if first:
                             dataToGraph[x] = x_data
                             first = False
+
+                    if broken:
+                        continue
 
                     _columns = [x] + vms
                     df = pd.DataFrame(dataToGraph, columns=_columns)
@@ -136,6 +158,7 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
 
                         index += 1
 
+                    legend = [x.split('-')[1] for x in vms]
                     saveTo = os.path.join(outputDir, group, testSet)
                     h.makeDirectory(saveTo)
                     saveTo = os.path.join(saveTo, f'{_type}_{x}_{y}.png')
@@ -145,7 +168,7 @@ def genAggregateBargraph(outputDir, aggregateData, listOfStats):
                     ax.set_title(f'{header} {testSet}')
                     ax.set_xticks([p + 2 * width for p in pos])
                     ax.set_xticklabels(df[x])
-                    plt.legend(vms, loc='upper left')
+                    plt.legend(legend, loc='upper left')
                     plt.savefig(saveTo)
                     plt.clf()
                     plt.close()

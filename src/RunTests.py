@@ -90,6 +90,8 @@ commonSets = [
     ('Parallelism', 'time'),
     
     ('Parallelism', 'CPU Clock'),
+    ('Parallelism', 'Cache Misses'),
+    ('Parallelism', 'Branch Misses'),
     ('Parallelism', 'Task Clock'),
     ('Parallelism', 'Page Faults Total'),
     ('Parallelism', 'Page Faults Minor'),
