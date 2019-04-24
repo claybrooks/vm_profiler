@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v8.6.1-->
+<PhoronixTestSuite>
+  <Generated>
+    <Title>Processor</Title>
+    <LastModified>2019-04-23 20:40:57</LastModified>
+    <TestClient>Phoronix Test Suite v8.6.1 (Spydeberg)</TestClient>
+    <Description>Processor Profile</Description>
+    <Notes></Notes>
+    <InternalTags></InternalTags>
+    <ReferenceID></ReferenceID>
+    <PreSetEnvironmentVariables></PreSetEnvironmentVariables>
+  </Generated>
+  <System>
+    <Identifier>Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H @ 4.10GHz (6 Cores / 12 Threads), Motherboard: MSI MS-16Q2 (E16Q2IMS.10E BIOS), Chipset: Intel Cannon Lake PCH Shared SRAM, Memory: 16384MB, Disk: 250GB Extreme SSD + 512GB TOSHIBA KSG60ZMV + 123GB Ultra USB 3.0, Graphics: MSI NVIDIA GeForce GTX 1070 with Max-Q Design 8GB (1101/4006MHz), Audio: Realtek ALC1220, Network: Qualcomm Atheros Killer E2500 + Intel-AC 9560</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: NVIDIA 390.116, OpenGL: 4.6.0, Compiler: GCC 8.2.0 + Clang 7.0.0-3, File-System: ext4, Screen Resolution: 1920x1080</Software>
+    <User>clay-host</User>
+    <TimeStamp>2019-04-23 19:44:23</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","cpu-scaling-governor":"intel_pstate powersave","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW STIBP + SSB disabled via prctl and seccomp + PTE Inversion; VMX: conditional cache flushes SMT vulnerable"}</JSON>
+  </System>
+  <System>
+    <Identifier>12 x Intel Core</Identifier>
+    <Hardware>Processor: 12 x Intel Core (Broadwell no TSX IBRS) (12 Cores), Motherboard: QEMU Standard PC (i440FX + PIIX 1996) (1.11.1-1ubuntu1 BIOS), Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 123GB Ultra USB 3.0, Graphics: llvmpipe 8GB, Audio: QEMU Generic, Network: Red Hat Virtio device</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.1, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.2 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1024x768, System Layer: KVM</Software>
+    <User>clay-kvm</User>
+    <TimeStamp>2019-04-22 21:57:03</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H (12 Cores), Motherboard: Oracle VirtualBox v1.2, Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 32GB VBOX HDD + 123GB Ultra USB 3.0, Graphics: InnoTek VirtualBox, Audio: Intel 82801AA AC 97 Audio, Monitor: VBOX monitor, Network: Intel 82540EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-10-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.8 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1848x972, System Layer: Oracle VirtualBox</Software>
+    <User>clay-virtualbox</User>
+    <TimeStamp>2019-04-23 01:04:37</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>4 x Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: 4 x Intel Core i7-8750H (12 Cores), Motherboard: Intel 440BX (6.00 BIOS), Chipset: Intel 440BX/ZX/DX, Memory: 8192MB, Disk: 21GB VMware Virtual S + 123GB Ultra USB 3.0, Graphics: VMware SVGA II, Audio: Ensoniq ES1371/ES1373, Network: Intel 82545EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: vmware 13.3.0, OpenGL: 3.3 Mesa 18.2.8, Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1851x952, System Layer: VMware</Software>
+    <User>clay-vmware</User>
+    <TimeStamp>2019-04-22 20:27:05</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + SSB disabled via prctl and seccomp + PTE Inversion"}</JSON>
+  </System>
+  <Result>
+    <Identifier>pts/scimark2-1.3.2</Identifier>
+    <Title>SciMark</Title>
+    <AppVersion>2.0</AppVersion>
+    <Arguments>TEST_COMPOSITE</Arguments>
+    <Description>Composite</Description>
+    <Scale>Mflops</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>630.69</Value>
+        <RawString>629.46:631.36:631.25</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm"},"test-run-times":"27.60:27.29:27.28"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>12 x Intel Core</Identifier>
+        <Value>581.72</Value>
+        <RawString>585.52:587.58:572.07</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm"},"test-run-times":"29.23:29.54:25.61"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>613.86</Value>
+        <RawString>613.87:611.7:616</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm"},"test-run-times":"28.26:24.88:28.16"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>4 x Intel Core i7-8750H</Identifier>
+        <Value>611.96</Value>
+        <RawString>609.74:613.57:612.57</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm"},"test-run-times":"28.51:28.27:28.33"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/crafty-1.4.4</Identifier>
+    <Title>Crafty</Title>
+    <AppVersion>25.2</AppVersion>
+    <Arguments></Arguments>
+    <Description>Elapsed Time</Description>
+    <Scale>Nodes Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>8017177</Value>
+        <RawString>8027854:8017294:8006384</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -lstdc++ -fprofile-use -lm"},"test-run-times":"24.39:24.47:24.37"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>12 x Intel Core</Identifier>
+        <Value>7743512</Value>
+        <RawString>7024541:7228532:7805737:7866342:7843321:7898570:7839198:7902627:7852648:7916081:7855898:7888652</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -lstdc++ -fprofile-use -lm"},"test-run-times":"27.90:26.96:25.15:24.84:25.05:24.77:24.87:24.97:24.88:24.78:24.84:24.80"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>7719662</Value>
+        <RawString>7731512:7721702:7705773</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -lstdc++ -fprofile-use -lm"},"test-run-times":"25.48:25.44:25.49"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>4 x Intel Core i7-8750H</Identifier>
+        <Value>7648341</Value>
+        <RawString>7644677:7619335:7681011</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -lstdc++ -fprofile-use -lm"},"test-run-times":"25.61:25.69:25.52"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/build-linux-kernel-1.9.1</Identifier>
+    <Title>Timed Linux Kernel Compilation</Title>
+    <AppVersion>4.18</AppVersion>
+    <Arguments></Arguments>
+    <Description>Time To Compile</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>138.75</Value>
+        <RawString>140.14452004433:137.5847928524:138.51617884636</RawString>
+        <JSON>{"test-run-times":"140.14:137.58:138.52"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>12 x Intel Core</Identifier>
+        <Value>136.84</Value>
+        <RawString>137.8860809803:136.16026496887:136.47528719902</RawString>
+        <JSON>{"test-run-times":"137.89:136.16:136.48"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>156.11</Value>
+        <RawString>157.77133107185:155.13118910789:155.44171714783</RawString>
+        <JSON>{"test-run-times":"157.77:155.13:155.44"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>4 x Intel Core i7-8750H</Identifier>
+        <Value>144.34</Value>
+        <RawString>145.39734196663:143.73142313957:143.8880610466</RawString>
+        <JSON>{"test-run-times":"145.40:143.73:143.89"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/c-ray-1.2.0</Identifier>
+    <Title>C-Ray</Title>
+    <AppVersion>1.1</AppVersion>
+    <Arguments></Arguments>
+    <Description>Total Time - 4K, 16 Rays Per Pixel</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>133.89</Value>
+        <RawString>133.481:134.252:133.949</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm -lpthread -O3"},"test-run-times":"133.84:134.63:134.33"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>12 x Intel Core</Identifier>
+        <Value>135.09</Value>
+        <RawString>134.537:135.28:135.453</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm -lpthread -O3"},"test-run-times":"134.92:135.65:135.83"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>138.65</Value>
+        <RawString>138.42:139.103:138.435</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm -lpthread -O3"},"test-run-times":"138.83:139.49:138.83"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>4 x Intel Core i7-8750H</Identifier>
+        <Value>136.15</Value>
+        <RawString>135.771:136.334:136.343</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lm -lpthread -O3"},"test-run-times":"136.15:136.71:136.74"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/ffmpeg-2.8.0</Identifier>
+    <Title>FFmpeg</Title>
+    <AppVersion>4.0.2</AppVersion>
+    <Arguments></Arguments>
+    <Description>H.264 HD To NTSC DV</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>5.41</Value>
+        <RawString>5.3098058700562:5.4121541976929:5.4997909069061</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lavdevice -lavfilter -lavformat -lavcodec -lswresample -lswscale -lavutil -lm -lxcb -lxcb-shape -lxcb-xfixes -lasound -pthread -llzma -std=c11 -fomit-frame-pointer -fPIC -O3 -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -MMD -MF -MT"},"test-run-times":"5.31:5.41:5.50"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>12 x Intel Core</Identifier>
+        <Value>6.46</Value>
+        <RawString>6.706237077713:6.3010640144348:6.3735258579254</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lavdevice -lavfilter -lavformat -lavcodec -lswresample -lswscale -lavutil -lm -lxcb -lxcb-shape -lxcb-xfixes -lasound -pthread -llzma -std=c11 -fomit-frame-pointer -fPIC -O3 -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -MMD -MF -MT"},"test-run-times":"6.71:6.30:6.37"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Intel Core i7-8750H</Identifier>
+        <Value>6.51</Value>
+        <RawString>6.6794581413269:6.3884959220886:6.448851108551</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lavdevice -lavfilter -lavformat -lavcodec -lswresample -lswscale -lavutil -lm -lxcb -lxcb-shape -lxcb-xfixes -lasound -pthread -llzma -std=c11 -fomit-frame-pointer -fPIC -O3 -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -MMD -MF -MT"},"test-run-times":"6.68:6.39:6.45"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>4 x Intel Core i7-8750H</Identifier>
+        <Value>5.84</Value>
+        <RawString>5.8320610523224:5.873398065567:5.8151321411133</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-lavdevice -lavfilter -lavformat -lavcodec -lswresample -lswscale -lavutil -lm -lxcb -lxcb-shape -lxcb-xfixes -lasound -pthread -llzma -std=c11 -fomit-frame-pointer -fPIC -O3 -fno-math-errno -fno-signed-zeros -fno-tree-vectorize -MMD -MF -MT"},"test-run-times":"5.83:5.87:5.82"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>

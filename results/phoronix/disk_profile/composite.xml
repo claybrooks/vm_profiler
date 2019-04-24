@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v8.6.1-->
+<PhoronixTestSuite>
+  <Generated>
+    <Title>Disk</Title>
+    <LastModified>2019-04-23 20:44:24</LastModified>
+    <TestClient>Phoronix Test Suite v8.6.1 (Spydeberg)</TestClient>
+    <Description>Disk Profile</Description>
+    <Notes></Notes>
+    <InternalTags></InternalTags>
+    <ReferenceID></ReferenceID>
+    <PreSetEnvironmentVariables></PreSetEnvironmentVariables>
+  </Generated>
+  <System>
+    <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H @ 4.10GHz (6 Cores / 12 Threads), Motherboard: MSI MS-16Q2 (E16Q2IMS.10E BIOS), Chipset: Intel Cannon Lake PCH Shared SRAM, Memory: 16384MB, Disk: 250GB Extreme SSD + 512GB TOSHIBA KSG60ZMV + 123GB Ultra USB 3.0, Graphics: MSI NVIDIA GeForce GTX 1070 with Max-Q Design 8GB (1101/4006MHz), Audio: Realtek ALC1220, Network: Qualcomm Atheros Killer E2500 + Intel-AC 9560</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: NVIDIA 390.116, OpenGL: 4.6.0, Compiler: GCC 8.2.0 + Clang 7.0.0-3, File-System: ext4, Screen Resolution: 1920x1080</Software>
+    <User>clay-host</User>
+    <TimeStamp>2019-04-23 19:17:52</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","disk-scheduler":"CFQ","disk-mount-options":"errors=remount-ro,relatime,rw","cpu-scaling-governor":"intel_pstate powersave","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW STIBP + SSB disabled via prctl and seccomp + PTE Inversion; VMX: conditional cache flushes SMT vulnerable"}</JSON>
+  </System>
+  <System>
+    <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+    <Hardware>Processor: 12 x Intel Core (Broadwell no TSX IBRS) (12 Cores), Motherboard: QEMU Standard PC (i440FX + PIIX 1996) (1.11.1-1ubuntu1 BIOS), Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 123GB Ultra USB 3.0, Graphics: llvmpipe 8GB, Audio: QEMU Generic, Network: Red Hat Virtio device</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.1, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.2 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1024x768, System Layer: KVM</Software>
+    <User>clay-kvm</User>
+    <TimeStamp>2019-04-22 21:21:06</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","disk-scheduler":"NONE","disk-mount-options":"errors=remount-ro,relatime,rw","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H (12 Cores), Motherboard: Oracle VirtualBox v1.2, Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 32GB VBOX HDD + 123GB Ultra USB 3.0, Graphics: InnoTek VirtualBox, Audio: Intel 82801AA AC 97 Audio, Monitor: VBOX monitor, Network: Intel 82540EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-10-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.8 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1848x972, System Layer: Oracle VirtualBox</Software>
+    <User>clay-virtualbox</User>
+    <TimeStamp>2019-04-23 00:23:18</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","disk-scheduler":"CFQ","disk-mount-options":"errors=remount-ro,relatime,rw","security":"KPTI + __user pointer sanitization + Full generic retpoline + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+    <Hardware>Processor: 4 x Intel Core i7-8750H (12 Cores), Motherboard: Intel 440BX (6.00 BIOS), Chipset: Intel 440BX/ZX/DX, Memory: 8192MB, Disk: 21GB VMware Virtual S + 123GB Ultra USB 3.0, Graphics: VMware SVGA II, Audio: Ensoniq ES1371/ES1373, Network: Intel 82545EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: vmware 13.3.0, OpenGL: 3.3 Mesa 18.2.8, Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1851x952, System Layer: VMware</Software>
+    <User>clay-vmware</User>
+    <TimeStamp>2019-04-22 19:54:19</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","disk-scheduler":"CFQ","disk-mount-options":"errors=remount-ro,relatime,rw","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + SSB disabled via prctl and seccomp + PTE Inversion"}</JSON>
+  </System>
+  <Result>
+    <Identifier>pts/aio-stress-1.1.1</Identifier>
+    <Title>AIO-Stress</Title>
+    <AppVersion>0.21</AppVersion>
+    <Arguments>-o 2</Arguments>
+    <Description>Random Write</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+        <Value>3588.68</Value>
+        <RawString>3586.07:3577.36:3602.62</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -laio"},"test-run-times":"6.08:5.29:6.33"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+        <Value>2714.65</Value>
+        <RawString>2553.15:2728.33:2773.61:2783.43:2734.74</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -laio"},"test-run-times":"7.16:6.99:6.79:6.87:6.51"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+        <Value>1887.19</Value>
+        <RawString>2258.46:1833.96:1817.67:2055.04:1878.31:1913.72:1291.4:2269.89:1731.56:2054.75:1815.44:1726.09</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -laio"},"test-run-times":"1.82:2.26:1.82:2.53:2.13:3.31:7.03:1.56:2.06:1.84:1.77:1.85"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+        <Value>1636.64</Value>
+        <RawString>755.72:1690.55:1474.68:1821.8:1548.33:1765.68:1739.48:1745.76:1769.43:1750.44:1773.4:1804.36</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread -laio"},"test-run-times":"3.00:1.72:1.71:1.62:1.80:1.68:1.69:1.68:1.64:1.67:1.65:1.58"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/fs-mark-1.0.2</Identifier>
+    <Title>FS-Mark</Title>
+    <AppVersion>3.3</AppVersion>
+    <Arguments>-s 1048576 -n 1000</Arguments>
+    <Description>1000 Files, 1MB Size</Description>
+    <Scale>Files/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+        <Value>45.12</Value>
+        <RawString>42.8:47.8:48:44.3:46.4:45.4:45.3:45.7:44.6:41.7:45.2:44.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-static"},"test-run-times":"23.45:21.00:20.95:22.69:21.69:22.16:22.22:22.00:22.54:24.11:22.25:22.73"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+        <Value>71.32</Value>
+        <RawString>63.2:58.8:55.2:58.6:62.8:80.5:85.5:92.9:84.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-static"},"test-run-times":"15.96:17.08:18.24:17.20:16.06:12.54:11.79:10.88:11.97"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+        <Value>94.34</Value>
+        <RawString>111.5:90.1:63.1:63.4:71.9:104.3:105.6:91.7:111.7:105.4:108:105.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-static"},"test-run-times":"9.07:11.22:15.98:15.91:14.04:9.71:9.59:11.02:9.07:9.61:9.38:9.61"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+        <Value>637.52</Value>
+        <RawString>539:507:691.2:729.2:697.4:556.3:619.5:540.2:722:708.8:672.1:667.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-static"},"test-run-times":"1.95:2.07:1.54:1.47:1.53:1.89:1.71:1.94:1.48:1.51:1.58:1.59"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/unpack-linux-1.1.1</Identifier>
+    <Title>Unpacking The Linux Kernel</Title>
+    <AppVersion></AppVersion>
+    <Arguments></Arguments>
+    <Description>linux-4.15.tar.xz</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+        <Value>5.42</Value>
+        <RawString>5.4230790138245:5.4313921928406:5.3838760852814:5.4608998298645</RawString>
+        <JSON>{"test-run-times":"5.42:5.43:5.38:5.46"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+        <Value>6.31</Value>
+        <RawString>5.9317400455475:5.7057228088379:5.8096899986267:6.3143949508667:5.9293839931488:6.6895530223846:6.0989761352539:6.2036230564117:7.8689198493958:6.13352394104:5.9446709156036:7.0477368831635</RawString>
+        <JSON>{"test-run-times":"5.93:5.71:5.81:6.31:5.93:6.69:6.10:6.20:7.87:6.13:5.94:7.05"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+        <Value>6.24</Value>
+        <RawString>7.1356048583984:6.0268828868866:6.3360300064087:6.351352930069:6.1634340286255:6.2895278930664:6.0948331356049:6.3859920501709:5.947958946228:6.4305980205536:6.1735520362854:6.2017660140991:6.0073089599609:6.2857301235199:5.9828088283539:6.0452039241791</RawString>
+        <JSON>{"test-run-times":"7.14:6.03:6.34:6.35:6.16:6.29:6.09:6.39:5.95:6.43:6.17:6.20:6.01:6.29:5.98:6.05"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+        <Value>6.97</Value>
+        <RawString>9.232684135437:6.8846499919891:6.809005022049:6.7635321617126:6.8296921253204:6.84228515625:6.9365048408508:6.918200969696:6.8079769611359:6.770339012146:6.7721381187439:6.8001439571381:6.8236949443817:6.7528760433197:6.7607870101929:6.8178420066833</RawString>
+        <JSON>{"test-run-times":"9.23:6.88:6.81:6.76:6.83:6.84:6.94:6.92:6.81:6.77:6.77:6.80:6.82:6.75:6.76:6.82"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/postmark-1.1.1</Identifier>
+    <Title>PostMark</Title>
+    <AppVersion>1.51</AppVersion>
+    <Arguments></Arguments>
+    <Description>Disk Transaction Performance</Description>
+    <Scale>TPS</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+        <Value>6466</Value>
+        <RawString>6410:6410:6578</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3"},"test-run-times":"38.86:38.74:38.35"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+        <Value>4360</Value>
+        <RawString>4385:4385:4310</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3"},"test-run-times":"57.30:57.75:58.28"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+        <Value>4011</Value>
+        <RawString>4032:3968:4032</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3"},"test-run-times":"62.57:63.08:62.71"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+        <Value>5515</Value>
+        <RawString>5434:5555:5555</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3"},"test-run-times":"46.07:45.60:45.21"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/compress-gzip-1.2.0</Identifier>
+    <Title>Gzip Compression</Title>
+    <AppVersion></AppVersion>
+    <Arguments></Arguments>
+    <Description>Linux Source Tree Archiving To .tar.gz</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>Extreme SSD - Intel Core i7-8750H</Identifier>
+        <Value>34.54</Value>
+        <RawString>34.854902982712:34.139672994614:34.629269838333</RawString>
+        <JSON>{"test-run-times":"34.85:34.14:34.63"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>Ultra USB 3.0 - 12 x Intel Core</Identifier>
+        <Value>36.47</Value>
+        <RawString>35.956995010376:36.281733036041:37.176192045212</RawString>
+        <JSON>{"test-run-times":"35.96:36.28:37.18"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VBOX HDD - Intel Core i7-8750H</Identifier>
+        <Value>36.59</Value>
+        <RawString>40.173053979874:35.113791942596:36.490350961685:35.86151099205:35.220528125763:34.904232025146:37.900839090347:35.360185146332:36.327634811401:37.533308029175:37.444855928421:36.749459981918</RawString>
+        <JSON>{"test-run-times":"40.17:35.11:36.49:35.86:35.22:34.90:37.90:35.36:36.33:37.53:37.44:36.75"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>VMware Virtual S - 4 x Intel Core i7-8750H</Identifier>
+        <Value>36.15</Value>
+        <RawString>36.537724971771:35.483952999115:36.423346996307</RawString>
+        <JSON>{"test-run-times":"36.54:35.48:36.42"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>

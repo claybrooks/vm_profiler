@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v8.6.1-->
+<PhoronixTestSuite>
+  <Generated>
+    <Title>Memory</Title>
+    <LastModified>2019-04-23 20:42:08</LastModified>
+    <TestClient>Phoronix Test Suite v8.6.1 (Spydeberg)</TestClient>
+    <Description>Memory Profile</Description>
+    <Notes></Notes>
+    <InternalTags></InternalTags>
+    <ReferenceID></ReferenceID>
+    <PreSetEnvironmentVariables></PreSetEnvironmentVariables>
+  </Generated>
+  <System>
+    <Identifier>2019-04-23 19:27</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H @ 4.10GHz (6 Cores / 12 Threads), Motherboard: MSI MS-16Q2 (E16Q2IMS.10E BIOS), Chipset: Intel Cannon Lake PCH Shared SRAM, Memory: 16384MB, Disk: 250GB Extreme SSD + 512GB TOSHIBA KSG60ZMV + 123GB Ultra USB 3.0, Graphics: MSI NVIDIA GeForce GTX 1070 with Max-Q Design 8GB (1101/4006MHz), Audio: Realtek ALC1220, Network: Qualcomm Atheros Killer E2500 + Intel-AC 9560</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: NVIDIA 390.116, OpenGL: 4.6.0, Compiler: GCC 8.2.0 + Clang 7.0.0-3, File-System: ext4, Screen Resolution: 1920x1080</Software>
+    <User>clay-host</User>
+    <TimeStamp>2019-04-23 19:27:49</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","cpu-scaling-governor":"intel_pstate powersave","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW STIBP + SSB disabled via prctl and seccomp + PTE Inversion; VMX: conditional cache flushes SMT vulnerable"}</JSON>
+  </System>
+  <System>
+    <Identifier>2019-04-22 21:32</Identifier>
+    <Hardware>Processor: 12 x Intel Core (Broadwell no TSX IBRS) (12 Cores), Motherboard: QEMU Standard PC (i440FX + PIIX 1996) (1.11.1-1ubuntu1 BIOS), Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 123GB Ultra USB 3.0, Graphics: llvmpipe 8GB, Audio: QEMU Generic, Network: Red Hat Virtio device</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.1, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.2 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1024x768, System Layer: KVM</Software>
+    <User>clay-kvm</User>
+    <TimeStamp>2019-04-22 21:32:21</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>2019-04-23 00:40</Identifier>
+    <Hardware>Processor: Intel Core i7-8750H (12 Cores), Motherboard: Oracle VirtualBox v1.2, Chipset: Intel 440FX 82441FX PMC, Memory: 8192MB, Disk: 32GB VBOX HDD + 123GB Ultra USB 3.0, Graphics: InnoTek VirtualBox, Audio: Intel 82801AA AC 97 Audio, Monitor: VBOX monitor, Network: Intel 82540EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-10-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: modesetting 1.20.1, OpenGL: 3.3 Mesa 18.2.8 (LLVM 7.0 256 bits), Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1848x972, System Layer: Oracle VirtualBox</Software>
+    <User>clay-virtualbox</User>
+    <TimeStamp>2019-04-23 00:40:08</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline + PTE Inversion"}</JSON>
+  </System>
+  <System>
+    <Identifier>2019-04-22 20:02</Identifier>
+    <Hardware>Processor: 4 x Intel Core i7-8750H (12 Cores), Motherboard: Intel 440BX (6.00 BIOS), Chipset: Intel 440BX/ZX/DX, Memory: 8192MB, Disk: 21GB VMware Virtual S + 123GB Ultra USB 3.0, Graphics: VMware SVGA II, Audio: Ensoniq ES1371/ES1373, Network: Intel 82545EM</Hardware>
+    <Software>OS: Ubuntu 18.10, Kernel: 4.18.0-17-generic (x86_64), Desktop: GNOME Shell 3.30.2, Display Server: X Server 1.20.1, Display Driver: vmware 13.3.0, OpenGL: 3.3 Mesa 18.2.8, Compiler: GCC 8.2.0, File-System: ext4, Screen Resolution: 1851x952, System Layer: VMware</Software>
+    <User>clay-vmware</User>
+    <TimeStamp>2019-04-22 20:02:56</TimeStamp>
+    <TestClientVersion></TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-vtable-verify --disable-werror --enable-checking=release --enable-clocale=gnu --enable-default-pie --enable-gnu-unique-object --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --enable-libmpx --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-multiarch --enable-multilib --enable-nls --enable-objc-gc=auto --enable-offload-targets=nvptx-none --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --program-prefix=x86_64-linux-gnu- --target=x86_64-linux-gnu --with-abi=m64 --with-arch-32=i686 --with-default-libstdcxx-abi=new --with-gcc-major-version-only --with-multilib-list=m32,m64,mx32 --with-target-system-zlib --with-tune=generic --without-cuda-driver -v","security":"KPTI + __user pointer sanitization + Full generic retpoline IBPB IBRS_FW + SSB disabled via prctl and seccomp + PTE Inversion"}</JSON>
+  </System>
+  <Result>
+    <Identifier>pts/ramspeed-1.4.2</Identifier>
+    <Title>RAMspeed SMP</Title>
+    <AppVersion>3.5.0</AppVersion>
+    <Arguments>ADD -b 3</Arguments>
+    <Description>Integer Add</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>21669.50</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"84.24"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>20457.11</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"89.20"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>20659.24</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"88.67"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>20883.01</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"87.23"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/ramspeed-1.4.2</Identifier>
+    <Title>RAMspeed SMP</Title>
+    <AppVersion>3.5.0</AppVersion>
+    <Arguments>COPY -b 3</Arguments>
+    <Description>Integer Copy</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>19180.61</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"84.31"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>18970.53</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"85.95"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>18591.89</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"89.52"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>18688.45</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"87.17"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/ramspeed-1.4.2</Identifier>
+    <Title>RAMspeed SMP</Title>
+    <AppVersion>3.5.0</AppVersion>
+    <Arguments>SCALE -b 3</Arguments>
+    <Description>Integer Scale</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>19131.09</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"84.32"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>18994.40</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"85.31"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>18413.17</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"91.03"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>18503.87</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"87.62"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/ramspeed-1.4.2</Identifier>
+    <Title>RAMspeed SMP</Title>
+    <AppVersion>3.5.0</AppVersion>
+    <Arguments>ADD -b 6</Arguments>
+    <Description>Floating-Point Add</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>21702.49</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"83.78"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>21243.84</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"85.26"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>20600.53</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"88.33"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>20832.20</Value>
+        <RawString></RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O3 -march=native"},"test-run-times":"87.31"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/tinymembench-1.0.2</Identifier>
+    <Title>Tinymembench</Title>
+    <AppVersion>2018-05-28</AppVersion>
+    <Arguments></Arguments>
+    <Description>Standard Memcpy</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>14455.23</Value>
+        <RawString>14444.6:14431.9:14489.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"195.00:199.56:192.79"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>13950.97</Value>
+        <RawString>14093.3:13819.8:13939.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"336.27:342.08:331.10"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>12780.87</Value>
+        <RawString>12860.3:12811.1:12671.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"339.38:354.87:347.79"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>12480.20</Value>
+        <RawString>12570.3:12412.8:12457.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"328.97:342.77:352.14"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/tinymembench-1.0.2</Identifier>
+    <Title>Tinymembench</Title>
+    <AppVersion>2018-05-28</AppVersion>
+    <Arguments></Arguments>
+    <Description>Standard Memset</Description>
+    <Scale>MB/s</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>30565.17</Value>
+        <RawString>30452.1:30519.7:30723.7</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"195.00:199.56:192.79"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>27625.73</Value>
+        <RawString>27639.9:27305.1:27932.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"336.27:342.08:331.10"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>14619.60</Value>
+        <RawString>14614.8:14721.8:14522.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"339.38:354.87:347.79"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>19046.87</Value>
+        <RawString>19067.3:18952:19121.3</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-O2 -lm"},"test-run-times":"328.97:342.77:352.14"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/t-test1-1.0.1</Identifier>
+    <Title>t-test1</Title>
+    <AppVersion>2017-01-13</AppVersion>
+    <Arguments></Arguments>
+    <Description>Total Time</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>2019-04-23 19:27</Identifier>
+        <Value>6.18</Value>
+        <RawString>6.174026966095:6.1769800186157:6.176069021225</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread"},"test-run-times":"6.17:6.18:6.18"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 21:32</Identifier>
+        <Value>7.30</Value>
+        <RawString>7.426687002182:7.0801069736481:7.4063141345978</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread"},"test-run-times":"7.43:7.08:7.41"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-23 00:40</Identifier>
+        <Value>7.76</Value>
+        <RawString>7.7813448905945:7.7468609809875:7.754184961319</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread"},"test-run-times":"7.78:7.75:7.75"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>2019-04-22 20:02</Identifier>
+        <Value>8.60</Value>
+        <RawString>8.57555103302:8.6337099075317:8.5936601161957</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CC","compiler":"gcc","compiler-options":"-pthread"},"test-run-times":"8.58:8.63:8.59"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>
